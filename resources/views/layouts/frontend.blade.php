@@ -172,6 +172,26 @@
                                             {{ trans('cruds.itemManagement.title') }}
                                         </a>
                                     @endcan
+                                    @can('order_access')
+                                        <a class="dropdown-item disabled" href="#">
+                                            {{ trans('cruds.order.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('order_management_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.order-managements.index') }}">
+                                            {{ trans('cruds.orderManagement.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('order_status_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.order-statuses.index') }}">
+                                            {{ trans('cruds.orderStatus.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('order_item_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.order-items.index') }}">
+                                            {{ trans('cruds.orderItem.title') }}
+                                        </a>
+                                    @endcan
                                     @can('voucher_managment_access')
                                         <a class="dropdown-item disabled" href="#">
                                             {{ trans('cruds.voucherManagment.title') }}
@@ -180,6 +200,26 @@
                                     @can('add_voucher_access')
                                         <a class="dropdown-item ml-3" href="{{ route('frontend.add-vouchers.index') }}">
                                             {{ trans('cruds.addVoucher.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('payment_method_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.payment-methods.index') }}">
+                                            {{ trans('cruds.paymentMethod.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('add_on_access')
+                                        <a class="dropdown-item disabled" href="#">
+                                            {{ trans('cruds.addOn.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('add_on_category_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.add-on-categories.index') }}">
+                                            {{ trans('cruds.addOnCategory.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('add_on_management_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.add-on-managements.index') }}">
+                                            {{ trans('cruds.addOnManagement.title') }}
                                         </a>
                                     @endcan
 

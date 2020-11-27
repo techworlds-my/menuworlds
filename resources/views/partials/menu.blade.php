@@ -225,6 +225,48 @@
                 </ul>
             </li>
         @endcan
+        @can('order_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/order-managements*") ? "c-show" : "" }} {{ request()->is("admin/order-statuses*") ? "c-show" : "" }} {{ request()->is("admin/order-items*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.order.title') }}
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('order_management_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.order-managements.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/order-managements") || request()->is("admin/order-managements/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.orderManagement.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('order_status_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.order-statuses.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/order-statuses") || request()->is("admin/order-statuses/*") ? "c-active" : "" }}">
+                                <i class="fa-fw far fa-flag c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.orderStatus.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('order_item_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.order-items.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/order-items") || request()->is("admin/order-items/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.orderItem.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
         @can('voucher_managment_access')
             <li class="c-sidebar-nav-dropdown {{ request()->is("admin/add-vouchers*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
@@ -241,6 +283,48 @@
 
                                 </i>
                                 {{ trans('cruds.addVoucher.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
+        @can('payment_method_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.payment-methods.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/payment-methods") || request()->is("admin/payment-methods/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.paymentMethod.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('add_on_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/add-on-categories*") ? "c-show" : "" }} {{ request()->is("admin/add-on-managements*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.addOn.title') }}
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('add_on_category_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.add-on-categories.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/add-on-categories") || request()->is("admin/add-on-categories/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.addOnCategory.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('add_on_management_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.add-on-managements.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/add-on-managements") || request()->is("admin/add-on-managements/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.addOnManagement.title') }}
                             </a>
                         </li>
                     @endcan

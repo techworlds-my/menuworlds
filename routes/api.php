@@ -45,4 +45,22 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Add Vouchers
     Route::post('add-vouchers/media', 'AddVoucherApiController@storeMedia')->name('add-vouchers.storeMedia');
     Route::apiResource('add-vouchers', 'AddVoucherApiController');
+
+    // Order Managements
+    Route::apiResource('order-managements', 'OrderManagementsApiController');
+
+    // Order Statuses
+    Route::apiResource('order-statuses', 'OrderStatusApiController');
+
+    // Payment Methods
+    Route::apiResource('payment-methods', 'PaymentMethodApiController');
+
+    // Order Items
+    Route::apiResource('order-items', 'OrderItemsApiController');
+
+    // Add On Categories
+    Route::apiResource('add-on-categories', 'AddOnCategoriesApiController');
+
+    // Add On Managements
+    Route::apiResource('add-on-managements', 'AddOnManagementsApiController');
 });

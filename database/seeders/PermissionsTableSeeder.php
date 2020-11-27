@@ -344,6 +344,130 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 84,
+                'title' => 'order_management_create',
+            ],
+            [
+                'id'    => 85,
+                'title' => 'order_management_edit',
+            ],
+            [
+                'id'    => 86,
+                'title' => 'order_management_show',
+            ],
+            [
+                'id'    => 87,
+                'title' => 'order_management_delete',
+            ],
+            [
+                'id'    => 88,
+                'title' => 'order_management_access',
+            ],
+            [
+                'id'    => 89,
+                'title' => 'order_status_create',
+            ],
+            [
+                'id'    => 90,
+                'title' => 'order_status_edit',
+            ],
+            [
+                'id'    => 91,
+                'title' => 'order_status_show',
+            ],
+            [
+                'id'    => 92,
+                'title' => 'order_status_delete',
+            ],
+            [
+                'id'    => 93,
+                'title' => 'order_status_access',
+            ],
+            [
+                'id'    => 94,
+                'title' => 'payment_method_create',
+            ],
+            [
+                'id'    => 95,
+                'title' => 'payment_method_edit',
+            ],
+            [
+                'id'    => 96,
+                'title' => 'payment_method_show',
+            ],
+            [
+                'id'    => 97,
+                'title' => 'payment_method_delete',
+            ],
+            [
+                'id'    => 98,
+                'title' => 'payment_method_access',
+            ],
+            [
+                'id'    => 99,
+                'title' => 'order_item_create',
+            ],
+            [
+                'id'    => 100,
+                'title' => 'order_item_edit',
+            ],
+            [
+                'id'    => 101,
+                'title' => 'order_item_show',
+            ],
+            [
+                'id'    => 102,
+                'title' => 'order_item_delete',
+            ],
+            [
+                'id'    => 103,
+                'title' => 'order_item_access',
+            ],
+            [
+                'id'    => 104,
+                'title' => 'add_on_access',
+            ],
+            [
+                'id'    => 105,
+                'title' => 'add_on_category_create',
+            ],
+            [
+                'id'    => 106,
+                'title' => 'add_on_category_edit',
+            ],
+            [
+                'id'    => 107,
+                'title' => 'add_on_category_show',
+            ],
+            [
+                'id'    => 108,
+                'title' => 'add_on_category_delete',
+            ],
+            [
+                'id'    => 109,
+                'title' => 'add_on_category_access',
+            ],
+            [
+                'id'    => 110,
+                'title' => 'add_on_management_create',
+            ],
+            [
+                'id'    => 111,
+                'title' => 'add_on_management_edit',
+            ],
+            [
+                'id'    => 112,
+                'title' => 'add_on_management_show',
+            ],
+            [
+                'id'    => 113,
+                'title' => 'add_on_management_delete',
+            ],
+            [
+                'id'    => 114,
+                'title' => 'add_on_management_access',
+            ],
+            [
+                'id'    => 115,
                 'title' => 'profile_password_edit',
             ],
         ];
