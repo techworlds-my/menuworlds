@@ -320,6 +320,30 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 78,
+                'title' => 'voucher_managment_access',
+            ],
+            [
+                'id'    => 79,
+                'title' => 'add_voucher_create',
+            ],
+            [
+                'id'    => 80,
+                'title' => 'add_voucher_edit',
+            ],
+            [
+                'id'    => 81,
+                'title' => 'add_voucher_show',
+            ],
+            [
+                'id'    => 82,
+                'title' => 'add_voucher_delete',
+            ],
+            [
+                'id'    => 83,
+                'title' => 'add_voucher_access',
+            ],
+            [
+                'id'    => 84,
                 'title' => 'profile_password_edit',
             ],
         ];

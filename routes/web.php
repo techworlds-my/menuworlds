@@ -68,6 +68,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('areas/destroy', 'AreaController@massDestroy')->name('areas.massDestroy');
     Route::resource('areas', 'AreaController');
 
+    // Add Vouchers
+    Route::delete('add-vouchers/destroy', 'AddVoucherController@massDestroy')->name('add-vouchers.massDestroy');
+    Route::post('add-vouchers/media', 'AddVoucherController@storeMedia')->name('add-vouchers.storeMedia');
+    Route::post('add-vouchers/ckmedia', 'AddVoucherController@storeCKEditorImages')->name('add-vouchers.storeCKEditorImages');
+    Route::resource('add-vouchers', 'AddVoucherController');
+
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
     Route::post('messenger', 'MessengerController@storeTopic')->name('messenger.storeTopic');
@@ -150,6 +156,10 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Areas
     Route::delete('areas/destroy', 'AreaController@massDestroy')->name('areas.massDestroy');
     Route::resource('areas', 'AreaController');
+
+    // Add Vouchers
+    Route::delete('add-vouchers/destroy', 'AddVoucherController@massDestroy')->name('add-vouchers.massDestroy');
+    Route::resource('add-vouchers', 'AddVoucherController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

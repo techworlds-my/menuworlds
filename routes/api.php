@@ -41,4 +41,8 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Areas
     Route::apiResource('areas', 'AreaApiController');
+
+    // Add Vouchers
+    Route::post('add-vouchers/media', 'AddVoucherApiController@storeMedia')->name('add-vouchers.storeMedia');
+    Route::apiResource('add-vouchers', 'AddVoucherApiController');
 });
