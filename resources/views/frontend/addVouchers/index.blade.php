@@ -35,9 +35,6 @@
                                         {{ trans('cruds.addVoucher.fields.value') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.addVoucher.fields.expired_time') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.addVoucher.fields.redeem_point') }}
                                     </th>
                                     <th>
@@ -45,6 +42,12 @@
                                     </th>
                                     <th>
                                         {{ trans('cruds.addVoucher.fields.is_credit_purchase') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.addVoucher.fields.expired_time') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.addVoucher.fields.select_item') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -67,9 +70,6 @@
                                             {{ $addVoucher->value ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $addVoucher->expired_time ?? '' }}
-                                        </td>
-                                        <td>
                                             {{ $addVoucher->redeem_point ?? '' }}
                                         </td>
                                         <td>
@@ -79,6 +79,14 @@
                                         <td>
                                             <span style="display:none">{{ $addVoucher->is_credit_purchase ?? '' }}</span>
                                             <input type="checkbox" disabled="disabled" {{ $addVoucher->is_credit_purchase ? 'checked' : '' }}>
+                                        </td>
+                                        <td>
+                                            {{ $addVoucher->expired_time ?? '' }}
+                                        </td>
+                                        <td>
+                                            @foreach($addVoucher->select_items as $key => $item)
+                                                <span>{{ $item->title }}</span>
+                                            @endforeach
                                         </td>
                                         <td>
                                             @can('add_voucher_show')

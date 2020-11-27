@@ -49,16 +49,6 @@
                             <span class="help-block">{{ trans('cruds.addVoucher.fields.value_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="expired_time">{{ trans('cruds.addVoucher.fields.expired_time') }}</label>
-                            <input class="form-control" type="text" name="expired_time" id="expired_time" value="{{ old('expired_time', '') }}">
-                            @if($errors->has('expired_time'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('expired_time') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.addVoucher.fields.expired_time_helper') }}</span>
-                        </div>
-                        <div class="form-group">
                             <label for="description">{{ trans('cruds.addVoucher.fields.description') }}</label>
                             <textarea class="form-control ckeditor" name="description" id="description">{!! old('description') !!}</textarea>
                             @if($errors->has('description'))
@@ -103,6 +93,34 @@
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.addVoucher.fields.is_credit_purchase_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="expired_time">{{ trans('cruds.addVoucher.fields.expired_time') }}</label>
+                            <input class="form-control datetime" type="text" name="expired_time" id="expired_time" value="{{ old('expired_time') }}">
+                            @if($errors->has('expired_time'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('expired_time') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.addVoucher.fields.expired_time_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="select_items">{{ trans('cruds.addVoucher.fields.select_item') }}</label>
+                            <div style="padding-bottom: 4px">
+                                <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                                <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                            </div>
+                            <select class="form-control select2" name="select_items[]" id="select_items" multiple>
+                                @foreach($select_items as $id => $select_item)
+                                    <option value="{{ $id }}" {{ in_array($id, old('select_items', [])) ? 'selected' : '' }}>{{ $select_item }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('select_items'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('select_items') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.addVoucher.fields.select_item_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">

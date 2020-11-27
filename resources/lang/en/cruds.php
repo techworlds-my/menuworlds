@@ -299,6 +299,8 @@ return [
             'deleted_at_helper'     => ' ',
             'sub_cateogry'          => 'Sub Cateogry',
             'sub_cateogry_helper'   => ' ',
+            'categpry'              => 'Categpry',
+            'categpry_helper'       => ' ',
         ],
     ],
     'merchantLevel'       => [
@@ -399,8 +401,6 @@ return [
             'discount_type_helper'      => ' ',
             'value'                     => 'Value',
             'value_helper'              => ' ',
-            'expired_time'              => 'Expired Time',
-            'expired_time_helper'       => ' ',
             'description'               => 'Description',
             'description_helper'        => ' ',
             'redeem_point'              => 'Redeem Point',
@@ -415,6 +415,10 @@ return [
             'is_free_shipping_helper'   => ' ',
             'is_credit_purchase'        => 'Is Credit Purchase',
             'is_credit_purchase_helper' => ' ',
+            'expired_time'              => 'Expired Time',
+            'expired_time_helper'       => ' ',
+            'select_item'               => 'Select Item',
+            'select_item_helper'        => ' ',
         ],
     ],
     'orderManagement'     => [
@@ -566,5 +570,9 @@ return [
             'deleted_at'        => 'Deleted at',
             'deleted_at_helper' => ' ',
         ],
+    ],
+    'test'                => [
+        'title'          => 'Test',
+        'title_singular' => 'Test',
     ],
 ];

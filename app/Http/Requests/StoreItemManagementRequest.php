@@ -17,29 +17,25 @@ class StoreItemManagementRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'           => [
+            'title'       => [
                 'string',
                 'required',
             ],
-            'price'           => [
+            'price'       => [
                 'required',
             ],
-            'image.*'         => [
+            'image.*'     => [
                 'required',
             ],
-            'sales_price'     => [
+            'sales_price' => [
                 'string',
                 'nullable',
             ],
-            'rate'            => [
+            'rate'        => [
                 'nullable',
                 'integer',
                 'min:-2147483648',
                 'max:2147483647',
-            ],
-            'sub_cateogry_id' => [
-                'required',
-                'integer',
             ],
         ];
     }

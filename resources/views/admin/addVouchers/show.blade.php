@@ -49,14 +49,6 @@
                     </tr>
                     <tr>
                         <th>
-                            {{ trans('cruds.addVoucher.fields.expired_time') }}
-                        </th>
-                        <td>
-                            {{ $addVoucher->expired_time }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>
                             {{ trans('cruds.addVoucher.fields.description') }}
                         </th>
                         <td>
@@ -85,6 +77,24 @@
                         </th>
                         <td>
                             <input type="checkbox" disabled="disabled" {{ $addVoucher->is_credit_purchase ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.expired_time') }}
+                        </th>
+                        <td>
+                            {{ $addVoucher->expired_time }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.select_item') }}
+                        </th>
+                        <td>
+                            @foreach($addVoucher->select_items as $key => $select_item)
+                                <span class="label label-info">{{ $select_item->title }}</span>
+                            @endforeach
                         </td>
                     </tr>
                 </tbody>

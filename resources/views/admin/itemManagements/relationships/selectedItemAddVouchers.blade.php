@@ -1,5 +1,3 @@
-@extends('layouts.admin')
-@section('content')
 @can('add_voucher_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -9,6 +7,7 @@
         </div>
     </div>
 @endcan
+
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.addVoucher.title_singular') }} {{ trans('global.list') }}
@@ -16,7 +15,7 @@
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-AddVoucher">
+            <table class=" table table-bordered table-striped table-hover datatable datatable-selectedItemAddVouchers">
                 <thead>
                     <tr>
                         <th width="10">
@@ -35,6 +34,9 @@
                             {{ trans('cruds.addVoucher.fields.value') }}
                         </th>
                         <th>
+                            {{ trans('cruds.addVoucher.fields.expired_time') }}
+                        </th>
+                        <th>
                             {{ trans('cruds.addVoucher.fields.redeem_point') }}
                         </th>
                         <th>
@@ -44,10 +46,7 @@
                             {{ trans('cruds.addVoucher.fields.is_credit_purchase') }}
                         </th>
                         <th>
-                            {{ trans('cruds.addVoucher.fields.expired_time') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.addVoucher.fields.select_item') }}
+                            {{ trans('cruds.addVoucher.fields.selected_item') }}
                         </th>
                         <th>
                             &nbsp;
@@ -73,6 +72,9 @@
                                 {{ $addVoucher->value ?? '' }}
                             </td>
                             <td>
+                                {{ $addVoucher->expired_time ?? '' }}
+                            </td>
+                            <td>
                                 {{ $addVoucher->redeem_point ?? '' }}
                             </td>
                             <td>
@@ -84,12 +86,7 @@
                                 <input type="checkbox" disabled="disabled" {{ $addVoucher->is_credit_purchase ? 'checked' : '' }}>
                             </td>
                             <td>
-                                {{ $addVoucher->expired_time ?? '' }}
-                            </td>
-                            <td>
-                                @foreach($addVoucher->select_items as $key => $item)
-                                    <span class="badge badge-info">{{ $item->title }}</span>
-                                @endforeach
+                                {{ $addVoucher->selected_item->title ?? '' }}
                             </td>
                             <td>
                                 @can('add_voucher_show')
@@ -122,9 +119,6 @@
     </div>
 </div>
 
-
-
-@endsection
 @section('scripts')
 @parent
 <script>
@@ -165,7 +159,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 100,
   });
-  let table = $('.datatable-AddVoucher:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-selectedItemAddVouchers:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

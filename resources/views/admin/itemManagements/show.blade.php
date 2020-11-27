@@ -123,6 +123,14 @@
                             {{ $itemManagement->sub_cateogry->title ?? '' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.itemManagement.fields.categpry') }}
+                        </th>
+                        <td>
+                            {{ $itemManagement->categpry->title ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

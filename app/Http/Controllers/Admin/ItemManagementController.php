@@ -7,6 +7,7 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyItemManagementRequest;
 use App\Http\Requests\StoreItemManagementRequest;
 use App\Http\Requests\UpdateItemManagementRequest;
+use App\Models\ItemCatrgory;
 use App\Models\ItemManagement;
 use App\Models\ItemSubCateogry;
 use Gate;
@@ -22,11 +23,13 @@ class ItemManagementController extends Controller
     {
         abort_if(Gate::denies('item_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $itemManagements = ItemManagement::with(['sub_cateogry', 'media'])->get();
+        $itemManagements = ItemManagement::with(['sub_cateogry', 'categpry', 'media'])->get();
 
         $item_sub_cateogries = ItemSubCateogry::get();
 
-        return view('admin.itemManagements.index', compact('itemManagements', 'item_sub_cateogries'));
+        $item_catrgories = ItemCatrgory::get();
+
+        return view('admin.itemManagements.index', compact('itemManagements', 'item_sub_cateogries', 'item_catrgories'));
     }
 
     public function create()
@@ -35,7 +38,9 @@ class ItemManagementController extends Controller
 
         $sub_cateogries = ItemSubCateogry::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.itemManagements.create', compact('sub_cateogries'));
+        $categpries = ItemCatrgory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.itemManagements.create', compact('sub_cateogries', 'categpries'));
     }
 
     public function store(StoreItemManagementRequest $request)
@@ -59,9 +64,11 @@ class ItemManagementController extends Controller
 
         $sub_cateogries = ItemSubCateogry::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $itemManagement->load('sub_cateogry');
+        $categpries = ItemCatrgory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.itemManagements.edit', compact('sub_cateogries', 'itemManagement'));
+        $itemManagement->load('sub_cateogry', 'categpry');
+
+        return view('admin.itemManagements.edit', compact('sub_cateogries', 'categpries', 'itemManagement'));
     }
 
     public function update(UpdateItemManagementRequest $request, ItemManagement $itemManagement)
@@ -91,7 +98,7 @@ class ItemManagementController extends Controller
     {
         abort_if(Gate::denies('item_management_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $itemManagement->load('sub_cateogry');
+        $itemManagement->load('sub_cateogry', 'categpry');
 
         return view('admin.itemManagements.show', compact('itemManagement'));
     }

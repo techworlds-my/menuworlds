@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,26 +17,27 @@ class AddVoucher extends Model implements HasMedia
 
     public $table = 'add_vouchers';
 
-    protected $dates = [
-        'created_at',
-        'updated_at',
-        'deleted_at',
-    ];
-
     const DISCOUNT_TYPE_SELECT = [
         'amount'     => 'Amount',
         'percentage' => 'percentage',
+    ];
+
+    protected $dates = [
+        'expired_time',
+        'created_at',
+        'updated_at',
+        'deleted_at',
     ];
 
     protected $fillable = [
         'voucher_code',
         'discount_type',
         'value',
-        'expired_time',
         'description',
         'redeem_point',
         'is_free_shipping',
         'is_credit_purchase',
+        'expired_time',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -66,5 +68,20 @@ class AddVoucher extends Model implements HasMedia
         $this->two_factor_code       = null;
         $this->two_factor_expires_at = null;
         $this->save();
+    }
+
+    public function getExpiredTimeAttribute($value)
+    {
+        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
+    }
+
+    public function setExpiredTimeAttribute($value)
+    {
+        $this->attributes['expired_time'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
+    }
+
+    public function select_items()
+    {
+        return $this->belongsToMany(ItemManagement::class);
     }
 }

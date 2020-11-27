@@ -143,8 +143,8 @@
                             <span class="help-block">{{ trans('cruds.itemManagement.fields.is_halal_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label class="required" for="sub_cateogry_id">{{ trans('cruds.itemManagement.fields.sub_cateogry') }}</label>
-                            <select class="form-control select2" name="sub_cateogry_id" id="sub_cateogry_id" required>
+                            <label for="sub_cateogry_id">{{ trans('cruds.itemManagement.fields.sub_cateogry') }}</label>
+                            <select class="form-control select2" name="sub_cateogry_id" id="sub_cateogry_id">
                                 @foreach($sub_cateogries as $id => $sub_cateogry)
                                     <option value="{{ $id }}" {{ old('sub_cateogry_id') == $id ? 'selected' : '' }}>{{ $sub_cateogry }}</option>
                                 @endforeach
@@ -155,6 +155,20 @@
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.itemManagement.fields.sub_cateogry_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="categpry_id">{{ trans('cruds.itemManagement.fields.categpry') }}</label>
+                            <select class="form-control select2" name="categpry_id" id="categpry_id">
+                                @foreach($categpries as $id => $categpry)
+                                    <option value="{{ $id }}" {{ old('categpry_id') == $id ? 'selected' : '' }}>{{ $categpry }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('categpry'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('categpry') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.itemManagement.fields.categpry_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">

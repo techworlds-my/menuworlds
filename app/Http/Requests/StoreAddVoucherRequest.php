@@ -17,19 +17,25 @@ class StoreAddVoucherRequest extends FormRequest
     public function rules()
     {
         return [
-            'voucher_code' => [
+            'voucher_code'   => [
                 'string',
                 'required',
             ],
-            'value'        => [
+            'value'          => [
                 'required',
             ],
-            'expired_time' => [
-                'string',
+            'redeem_point'   => [
+                'numeric',
+            ],
+            'expired_time'   => [
+                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
                 'nullable',
             ],
-            'redeem_point' => [
-                'numeric',
+            'select_items.*' => [
+                'integer',
+            ],
+            'select_items'   => [
+                'array',
             ],
         ];
     }
