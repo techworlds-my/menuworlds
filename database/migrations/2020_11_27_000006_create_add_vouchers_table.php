@@ -13,11 +13,11 @@ class CreateAddVouchersTable extends Migration
             $table->string('voucher_code');
             $table->string('discount_type')->nullable();
             $table->decimal('value', 15, 2);
-            $table->string('expired_time')->nullable();
             $table->longText('description')->nullable();
             $table->float('redeem_point', 15, 2)->nullable();
             $table->boolean('is_free_shipping')->default(0)->nullable();
             $table->boolean('is_credit_purchase')->default(0)->nullable();
+            $table->datetime('expired_time')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

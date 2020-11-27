@@ -62,6 +62,9 @@
                             {{ trans('cruds.itemManagement.fields.sub_cateogry') }}
                         </th>
                         <th>
+                            {{ trans('cruds.itemManagement.fields.categpry') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -101,6 +104,14 @@
                             <select class="search">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($item_sub_cateogries as $key => $item)
+                                    <option value="{{ $item->title }}">{{ $item->title }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <select class="search">
+                                <option value>{{ trans('global.all') }}</option>
+                                @foreach($item_catrgories as $key => $item)
                                     <option value="{{ $item->title }}">{{ $item->title }}</option>
                                 @endforeach
                             </select>
@@ -163,6 +174,9 @@
                             </td>
                             <td>
                                 {{ $itemManagement->sub_cateogry->title ?? '' }}
+                            </td>
+                            <td>
+                                {{ $itemManagement->categpry->title ?? '' }}
                             </td>
                             <td>
                                 @can('item_management_show')

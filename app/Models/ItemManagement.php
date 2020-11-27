@@ -38,6 +38,7 @@ class ItemManagement extends Model implements HasMedia
         'is_veg',
         'is_halal',
         'sub_cateogry_id',
+        'categpry_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -85,5 +86,10 @@ class ItemManagement extends Model implements HasMedia
     public function sub_cateogry()
     {
         return $this->belongsTo(ItemSubCateogry::class, 'sub_cateogry_id');
+    }
+
+    public function categpry()
+    {
+        return $this->belongsTo(ItemCatrgory::class, 'categpry_id');
     }
 }
