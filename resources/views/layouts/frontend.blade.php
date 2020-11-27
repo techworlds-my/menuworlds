@@ -172,6 +172,16 @@
                                             {{ trans('cruds.itemManagement.title') }}
                                         </a>
                                     @endcan
+                                    @can('voucher_managment_access')
+                                        <a class="dropdown-item disabled" href="#">
+                                            {{ trans('cruds.voucherManagment.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('add_voucher_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.add-vouchers.index') }}">
+                                            {{ trans('cruds.addVoucher.title') }}
+                                        </a>
+                                    @endcan
 
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

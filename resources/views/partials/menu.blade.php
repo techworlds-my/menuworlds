@@ -225,6 +225,28 @@
                 </ul>
             </li>
         @endcan
+        @can('voucher_managment_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/add-vouchers*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.voucherManagment.title') }}
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('add_voucher_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.add-vouchers.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/add-vouchers") || request()->is("admin/add-vouchers/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.addVoucher.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
         @php($unread = \App\Models\QaTopic::unreadCount())
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.messenger.index") }}" class="{{ request()->is("admin/messenger") || request()->is("admin/messenger/*") ? "c-active" : "" }} c-sidebar-nav-link">
