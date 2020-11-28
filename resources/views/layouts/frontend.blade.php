@@ -192,6 +192,11 @@
                                             {{ trans('cruds.orderItem.title') }}
                                         </a>
                                     @endcan
+                                    @can('order_type_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.order-types.index') }}">
+                                            {{ trans('cruds.orderType.title') }}
+                                        </a>
+                                    @endcan
                                     @can('voucher_managment_access')
                                         <a class="dropdown-item disabled" href="#">
                                             {{ trans('cruds.voucherManagment.title') }}
@@ -200,6 +205,21 @@
                                     @can('add_voucher_access')
                                         <a class="dropdown-item ml-3" href="{{ route('frontend.add-vouchers.index') }}">
                                             {{ trans('cruds.addVoucher.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('voucher_reedem_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.voucher-reedems.index') }}">
+                                            {{ trans('cruds.voucherReedem.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('voucher_wallet_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.voucher-wallets.index') }}">
+                                            {{ trans('cruds.voucherWallet.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('voucher_category_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.voucher-categories.index') }}">
+                                            {{ trans('cruds.voucherCategory.title') }}
                                         </a>
                                     @endcan
                                     @can('payment_method_access')
@@ -222,29 +242,19 @@
                                             {{ trans('cruds.addOnManagement.title') }}
                                         </a>
                                     @endcan
-                                    @can('test_access')
-                                        <a class="dropdown-item disabled" href="#">
-                                            {{ trans('cruds.test.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('testasd_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.testasds.index') }}">
-                                            {{ trans('cruds.testasd.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('asdasd_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.asdasds.index') }}">
-                                            {{ trans('cruds.asdasd.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('order_type_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.order-types.index') }}">
-                                            {{ trans('cruds.orderType.title') }}
-                                        </a>
-                                    @endcan
                                     @can('seat_access')
-                                        <a class="dropdown-item" href="{{ route('frontend.seats.index') }}">
+                                        <a class="dropdown-item disabled" href="#">
                                             {{ trans('cruds.seat.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('seats_log_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.seats-logs.index') }}">
+                                            {{ trans('cruds.seatsLog.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('seats_management_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.seats-managements.index') }}">
+                                            {{ trans('cruds.seatsManagement.title') }}
                                         </a>
                                     @endcan
 

@@ -67,12 +67,18 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     // Order Types
     Route::apiResource('order-types', 'OrderTypeApiController');
 
-    // Testasds
-    Route::apiResource('testasds', 'TestasdApiController');
+    // Seats Logs
+    Route::apiResource('seats-logs', 'SeatsLogApiController');
 
-    // Seats
-    Route::apiResource('seats', 'SeatsApiController');
+    // Seats Managements
+    Route::apiResource('seats-managements', 'SeatsManagementApiController');
 
-    // Asdasds
-    Route::apiResource('asdasds', 'AsdasdApiController');
+    // Voucher Reedems
+    Route::apiResource('voucher-reedems', 'VoucherReedemApiController');
+
+    // Voucher Wallets
+    Route::apiResource('voucher-wallets', 'VoucherWalletApiController');
+
+    // Voucher Categories
+    Route::apiResource('voucher-categories', 'VoucherCategoryApiController');
 });

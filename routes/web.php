@@ -102,17 +102,25 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('order-types/destroy', 'OrderTypeController@massDestroy')->name('order-types.massDestroy');
     Route::resource('order-types', 'OrderTypeController');
 
-    // Testasds
-    Route::delete('testasds/destroy', 'TestasdController@massDestroy')->name('testasds.massDestroy');
-    Route::resource('testasds', 'TestasdController');
+    // Seats Logs
+    Route::delete('seats-logs/destroy', 'SeatsLogController@massDestroy')->name('seats-logs.massDestroy');
+    Route::resource('seats-logs', 'SeatsLogController');
 
-    // Seats
-    Route::delete('seats/destroy', 'SeatsController@massDestroy')->name('seats.massDestroy');
-    Route::resource('seats', 'SeatsController');
+    // Seats Managements
+    Route::delete('seats-managements/destroy', 'SeatsManagementController@massDestroy')->name('seats-managements.massDestroy');
+    Route::resource('seats-managements', 'SeatsManagementController');
 
-    // Asdasds
-    Route::delete('asdasds/destroy', 'AsdasdController@massDestroy')->name('asdasds.massDestroy');
-    Route::resource('asdasds', 'AsdasdController');
+    // Voucher Reedems
+    Route::delete('voucher-reedems/destroy', 'VoucherReedemController@massDestroy')->name('voucher-reedems.massDestroy');
+    Route::resource('voucher-reedems', 'VoucherReedemController');
+
+    // Voucher Wallets
+    Route::delete('voucher-wallets/destroy', 'VoucherWalletController@massDestroy')->name('voucher-wallets.massDestroy');
+    Route::resource('voucher-wallets', 'VoucherWalletController');
+
+    // Voucher Categories
+    Route::delete('voucher-categories/destroy', 'VoucherCategoryController@massDestroy')->name('voucher-categories.massDestroy');
+    Route::resource('voucher-categories', 'VoucherCategoryController');
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
@@ -229,17 +237,25 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::delete('order-types/destroy', 'OrderTypeController@massDestroy')->name('order-types.massDestroy');
     Route::resource('order-types', 'OrderTypeController');
 
-    // Testasds
-    Route::delete('testasds/destroy', 'TestasdController@massDestroy')->name('testasds.massDestroy');
-    Route::resource('testasds', 'TestasdController');
+    // Seats Logs
+    Route::delete('seats-logs/destroy', 'SeatsLogController@massDestroy')->name('seats-logs.massDestroy');
+    Route::resource('seats-logs', 'SeatsLogController');
 
-    // Seats
-    Route::delete('seats/destroy', 'SeatsController@massDestroy')->name('seats.massDestroy');
-    Route::resource('seats', 'SeatsController');
+    // Seats Managements
+    Route::delete('seats-managements/destroy', 'SeatsManagementController@massDestroy')->name('seats-managements.massDestroy');
+    Route::resource('seats-managements', 'SeatsManagementController');
 
-    // Asdasds
-    Route::delete('asdasds/destroy', 'AsdasdController@massDestroy')->name('asdasds.massDestroy');
-    Route::resource('asdasds', 'AsdasdController');
+    // Voucher Reedems
+    Route::delete('voucher-reedems/destroy', 'VoucherReedemController@massDestroy')->name('voucher-reedems.massDestroy');
+    Route::resource('voucher-reedems', 'VoucherReedemController');
+
+    // Voucher Wallets
+    Route::delete('voucher-wallets/destroy', 'VoucherWalletController@massDestroy')->name('voucher-wallets.massDestroy');
+    Route::resource('voucher-wallets', 'VoucherWalletController');
+
+    // Voucher Categories
+    Route::delete('voucher-categories/destroy', 'VoucherCategoryController@massDestroy')->name('voucher-categories.massDestroy');
+    Route::resource('voucher-categories', 'VoucherCategoryController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');
