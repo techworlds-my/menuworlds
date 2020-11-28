@@ -512,6 +512,46 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 126,
+                'title' => 'seat_create',
+            ],
+            [
+                'id'    => 127,
+                'title' => 'seat_edit',
+            ],
+            [
+                'id'    => 128,
+                'title' => 'seat_show',
+            ],
+            [
+                'id'    => 129,
+                'title' => 'seat_delete',
+            ],
+            [
+                'id'    => 130,
+                'title' => 'seat_access',
+            ],
+            [
+                'id'    => 131,
+                'title' => 'asdasd_create',
+            ],
+            [
+                'id'    => 132,
+                'title' => 'asdasd_edit',
+            ],
+            [
+                'id'    => 133,
+                'title' => 'asdasd_show',
+            ],
+            [
+                'id'    => 134,
+                'title' => 'asdasd_delete',
+            ],
+            [
+                'id'    => 135,
+                'title' => 'asdasd_access',
+            ],
+            [
+                'id'    => 136,
                 'title' => 'profile_password_edit',
             ],
         ];

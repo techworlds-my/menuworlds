@@ -106,6 +106,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('testasds/destroy', 'TestasdController@massDestroy')->name('testasds.massDestroy');
     Route::resource('testasds', 'TestasdController');
 
+    // Seats
+    Route::delete('seats/destroy', 'SeatsController@massDestroy')->name('seats.massDestroy');
+    Route::resource('seats', 'SeatsController');
+
+    // Asdasds
+    Route::delete('asdasds/destroy', 'AsdasdController@massDestroy')->name('asdasds.massDestroy');
+    Route::resource('asdasds', 'AsdasdController');
+
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
     Route::post('messenger', 'MessengerController@storeTopic')->name('messenger.storeTopic');
@@ -224,6 +232,14 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Testasds
     Route::delete('testasds/destroy', 'TestasdController@massDestroy')->name('testasds.massDestroy');
     Route::resource('testasds', 'TestasdController');
+
+    // Seats
+    Route::delete('seats/destroy', 'SeatsController@massDestroy')->name('seats.massDestroy');
+    Route::resource('seats', 'SeatsController');
+
+    // Asdasds
+    Route::delete('asdasds/destroy', 'AsdasdController@massDestroy')->name('asdasds.massDestroy');
+    Route::resource('asdasds', 'AsdasdController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

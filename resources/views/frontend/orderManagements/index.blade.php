@@ -68,6 +68,9 @@
                                         {{ trans('cruds.orderManagement.fields.order_type') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.orderManagement.fields.time_needed') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -120,6 +123,9 @@
                                         </td>
                                         <td>
                                             {{ $orderManagement->order_type->type ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $orderManagement->time_needed ?? '' }}
                                         </td>
                                         <td>
                                             @can('order_management_show')

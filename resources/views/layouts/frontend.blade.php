@@ -232,9 +232,19 @@
                                             {{ trans('cruds.testasd.title') }}
                                         </a>
                                     @endcan
+                                    @can('asdasd_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.asdasds.index') }}">
+                                            {{ trans('cruds.asdasd.title') }}
+                                        </a>
+                                    @endcan
                                     @can('order_type_access')
                                         <a class="dropdown-item" href="{{ route('frontend.order-types.index') }}">
                                             {{ trans('cruds.orderType.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('seat_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.seats.index') }}">
+                                            {{ trans('cruds.seat.title') }}
                                         </a>
                                     @endcan
 

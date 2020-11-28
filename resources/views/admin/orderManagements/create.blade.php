@@ -173,6 +173,16 @@
                 <span class="help-block">{{ trans('cruds.orderManagement.fields.order_type_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="time_needed">{{ trans('cruds.orderManagement.fields.time_needed') }}</label>
+                <input class="form-control datetime {{ $errors->has('time_needed') ? 'is-invalid' : '' }}" type="text" name="time_needed" id="time_needed" value="{{ old('time_needed') }}">
+                @if($errors->has('time_needed'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('time_needed') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.orderManagement.fields.time_needed_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>
