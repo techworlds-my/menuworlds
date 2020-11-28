@@ -331,38 +331,6 @@
                 </ul>
             </li>
         @endcan
-        @can('test_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/testasds*") ? "c-show" : "" }} {{ request()->is("admin/asdasds*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.test.title') }}
-                </a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    @can('testasd_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.testasds.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/testasds") || request()->is("admin/testasds/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.testasd.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('asdasd_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.asdasds.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/asdasds") || request()->is("admin/asdasds/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.asdasd.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcan
         @can('order_type_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.order-types.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/order-types") || request()->is("admin/order-types/*") ? "c-active" : "" }}">
@@ -380,6 +348,16 @@
 
                     </i>
                     {{ trans('cruds.seat.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('seats_log_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.seats-logs.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/seats-logs") || request()->is("admin/seats-logs/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.seatsLog.title') }}
                 </a>
             </li>
         @endcan

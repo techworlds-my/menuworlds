@@ -102,17 +102,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('order-types/destroy', 'OrderTypeController@massDestroy')->name('order-types.massDestroy');
     Route::resource('order-types', 'OrderTypeController');
 
-    // Testasds
-    Route::delete('testasds/destroy', 'TestasdController@massDestroy')->name('testasds.massDestroy');
-    Route::resource('testasds', 'TestasdController');
-
     // Seats
     Route::delete('seats/destroy', 'SeatsController@massDestroy')->name('seats.massDestroy');
     Route::resource('seats', 'SeatsController');
 
-    // Asdasds
-    Route::delete('asdasds/destroy', 'AsdasdController@massDestroy')->name('asdasds.massDestroy');
-    Route::resource('asdasds', 'AsdasdController');
+    // Seats Logs
+    Route::delete('seats-logs/destroy', 'SeatsLogController@massDestroy')->name('seats-logs.massDestroy');
+    Route::resource('seats-logs', 'SeatsLogController');
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
@@ -229,17 +225,13 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     Route::delete('order-types/destroy', 'OrderTypeController@massDestroy')->name('order-types.massDestroy');
     Route::resource('order-types', 'OrderTypeController');
 
-    // Testasds
-    Route::delete('testasds/destroy', 'TestasdController@massDestroy')->name('testasds.massDestroy');
-    Route::resource('testasds', 'TestasdController');
-
     // Seats
     Route::delete('seats/destroy', 'SeatsController@massDestroy')->name('seats.massDestroy');
     Route::resource('seats', 'SeatsController');
 
-    // Asdasds
-    Route::delete('asdasds/destroy', 'AsdasdController@massDestroy')->name('asdasds.massDestroy');
-    Route::resource('asdasds', 'AsdasdController');
+    // Seats Logs
+    Route::delete('seats-logs/destroy', 'SeatsLogController@massDestroy')->name('seats-logs.massDestroy');
+    Route::resource('seats-logs', 'SeatsLogController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

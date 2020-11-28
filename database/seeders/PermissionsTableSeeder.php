@@ -468,90 +468,66 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 115,
-                'title' => 'test_access',
-            ],
-            [
-                'id'    => 116,
                 'title' => 'order_type_create',
             ],
             [
-                'id'    => 117,
+                'id'    => 116,
                 'title' => 'order_type_edit',
             ],
             [
-                'id'    => 118,
+                'id'    => 117,
                 'title' => 'order_type_show',
             ],
             [
-                'id'    => 119,
+                'id'    => 118,
                 'title' => 'order_type_delete',
             ],
             [
-                'id'    => 120,
+                'id'    => 119,
                 'title' => 'order_type_access',
             ],
             [
-                'id'    => 121,
-                'title' => 'testasd_create',
-            ],
-            [
-                'id'    => 122,
-                'title' => 'testasd_edit',
-            ],
-            [
-                'id'    => 123,
-                'title' => 'testasd_show',
-            ],
-            [
-                'id'    => 124,
-                'title' => 'testasd_delete',
-            ],
-            [
-                'id'    => 125,
-                'title' => 'testasd_access',
-            ],
-            [
-                'id'    => 126,
+                'id'    => 120,
                 'title' => 'seat_create',
             ],
             [
-                'id'    => 127,
+                'id'    => 121,
                 'title' => 'seat_edit',
             ],
             [
-                'id'    => 128,
+                'id'    => 122,
                 'title' => 'seat_show',
             ],
             [
-                'id'    => 129,
+                'id'    => 123,
                 'title' => 'seat_delete',
             ],
             [
-                'id'    => 130,
+                'id'    => 124,
                 'title' => 'seat_access',
             ],
             [
-                'id'    => 131,
-                'title' => 'asdasd_create',
+                'id'    => 125,
+                'title' => 'seats_log_create',
             ],
             [
-                'id'    => 132,
-                'title' => 'asdasd_edit',
+                'id'    => 126,
+                'title' => 'seats_log_edit',
             ],
             [
-                'id'    => 133,
-                'title' => 'asdasd_show',
+                'id'    => 127,
+                'title' => 'seats_log_show',
             ],
             [
-                'id'    => 134,
-                'title' => 'asdasd_delete',
+                'id'    => 128,
+                'title' => 'seats_log_delete',
             ],
             [
-                'id'    => 135,
-                'title' => 'asdasd_access',
+                'id'    => 129,
+                'title' => 'seats_log_access',
             ],
             [
-                'id'    => 136,
+                'id'    => 130,
                 'title' => 'profile_password_edit',
             ],
         ];
