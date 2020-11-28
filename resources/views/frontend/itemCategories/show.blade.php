@@ -42,6 +42,14 @@
                                         <input type="checkbox" disabled="disabled" {{ $itemCategory->is_enable ? 'checked' : '' }}>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.itemCategory.fields.merchant') }}
+                                    </th>
+                                    <td>
+                                        {{ $itemCategory->merchant->company_name ?? '' }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

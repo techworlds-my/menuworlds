@@ -35,6 +35,9 @@
                                         {{ trans('cruds.itemSubCategory.fields.category') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.itemSubCategory.fields.merchant') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -54,6 +57,9 @@
                                         </td>
                                         <td>
                                             {{ $itemSubCategory->category->title ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $itemSubCategory->merchant->company_name ?? '' }}
                                         </td>
                                         <td>
                                             @can('item_sub_category_show')

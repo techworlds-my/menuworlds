@@ -7,6 +7,7 @@ use App\Http\Requests\MassDestroyItemCategoryRequest;
 use App\Http\Requests\StoreItemCategoryRequest;
 use App\Http\Requests\UpdateItemCategoryRequest;
 use App\Models\ItemCategory;
+use App\Models\MerchantManagement;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +18,7 @@ class ItemCategoryController extends Controller
     {
         abort_if(Gate::denies('item_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $itemCategories = ItemCategory::all();
+        $itemCategories = ItemCategory::with(['merchant'])->get();
 
         return view('admin.itemCategories.index', compact('itemCategories'));
     }
@@ -26,7 +27,9 @@ class ItemCategoryController extends Controller
     {
         abort_if(Gate::denies('item_category_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.itemCategories.create');
+        $merchants = MerchantManagement::all()->pluck('company_name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.itemCategories.create', compact('merchants'));
     }
 
     public function store(StoreItemCategoryRequest $request)
@@ -40,7 +43,11 @@ class ItemCategoryController extends Controller
     {
         abort_if(Gate::denies('item_category_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return view('admin.itemCategories.edit', compact('itemCategory'));
+        $merchants = MerchantManagement::all()->pluck('company_name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $itemCategory->load('merchant');
+
+        return view('admin.itemCategories.edit', compact('merchants', 'itemCategory'));
     }
 
     public function update(UpdateItemCategoryRequest $request, ItemCategory $itemCategory)
@@ -53,6 +60,8 @@ class ItemCategoryController extends Controller
     public function show(ItemCategory $itemCategory)
     {
         abort_if(Gate::denies('item_category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $itemCategory->load('merchant');
 
         return view('admin.itemCategories.show', compact('itemCategory'));
     }

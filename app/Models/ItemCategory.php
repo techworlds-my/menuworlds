@@ -22,6 +22,7 @@ class ItemCategory extends Model
     protected $fillable = [
         'title',
         'is_enable',
+        'merchant_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -46,5 +47,10 @@ class ItemCategory extends Model
         $this->two_factor_code       = null;
         $this->two_factor_expires_at = null;
         $this->save();
+    }
+
+    public function merchant()
+    {
+        return $this->belongsTo(MerchantManagement::class, 'merchant_id');
     }
 }
