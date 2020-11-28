@@ -51,6 +51,20 @@
                             <span class="help-block">{{ trans('cruds.itemSubCategory.fields.category_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label for="merchant_id">{{ trans('cruds.itemSubCategory.fields.merchant') }}</label>
+                            <select class="form-control select2" name="merchant_id" id="merchant_id">
+                                @foreach($merchants as $id => $merchant)
+                                    <option value="{{ $id }}" {{ old('merchant_id') == $id ? 'selected' : '' }}>{{ $merchant }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('merchant'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('merchant') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.itemSubCategory.fields.merchant_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-danger" type="submit">
                                 {{ trans('global.save') }}
                             </button>

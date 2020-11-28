@@ -17,7 +17,7 @@ class ItemCategoryApiController extends Controller
     {
         abort_if(Gate::denies('item_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ItemCategoryResource(ItemCategory::all());
+        return new ItemCategoryResource(ItemCategory::with(['merchant'])->get());
     }
 
     public function store(StoreItemCategoryRequest $request)
@@ -33,7 +33,7 @@ class ItemCategoryApiController extends Controller
     {
         abort_if(Gate::denies('item_category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ItemCategoryResource($itemCategory);
+        return new ItemCategoryResource($itemCategory->load(['merchant']));
     }
 
     public function update(UpdateItemCategoryRequest $request, ItemCategory $itemCategory)

@@ -32,6 +32,9 @@
                             {{ trans('cruds.itemCategory.fields.is_enable') }}
                         </th>
                         <th>
+                            {{ trans('cruds.itemCategory.fields.merchant') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -51,6 +54,9 @@
                             <td>
                                 <span style="display:none">{{ $itemCategory->is_enable ?? '' }}</span>
                                 <input type="checkbox" disabled="disabled" {{ $itemCategory->is_enable ? 'checked' : '' }}>
+                            </td>
+                            <td>
+                                {{ $itemCategory->merchant->company_name ?? '' }}
                             </td>
                             <td>
                                 @can('item_category_show')

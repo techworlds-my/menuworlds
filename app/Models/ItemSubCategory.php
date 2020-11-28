@@ -23,6 +23,7 @@ class ItemSubCategory extends Model
         'title',
         'is_enable',
         'category_id',
+        'merchant_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -52,5 +53,10 @@ class ItemSubCategory extends Model
     public function category()
     {
         return $this->belongsTo(ItemCategory::class, 'category_id');
+    }
+
+    public function merchant()
+    {
+        return $this->belongsTo(MerchantManagement::class, 'merchant_id');
     }
 }

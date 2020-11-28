@@ -709,6 +709,8 @@ return [
             'deleted_at_helper' => ' ',
             'category'          => 'Category',
             'category_helper'   => ' ',
+            'merchant'          => 'Merchant',
+            'merchant_helper'   => ' ',
         ],
     ],
     'itemCategory'        => [
@@ -727,6 +729,8 @@ return [
             'updated_at_helper' => ' ',
             'deleted_at'        => 'Deleted at',
             'deleted_at_helper' => ' ',
+            'merchant'          => 'Merchant',
+            'merchant_helper'   => ' ',
         ],
     ],
 ];

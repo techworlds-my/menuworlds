@@ -50,6 +50,14 @@
                                         {{ $itemSubCategory->category->title ?? '' }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.itemSubCategory.fields.merchant') }}
+                                    </th>
+                                    <td>
+                                        {{ $itemSubCategory->merchant->company_name ?? '' }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">
