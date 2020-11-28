@@ -11,6 +11,7 @@ use App\Models\AddVoucher;
 use App\Models\ItemCatrgory;
 use App\Models\ItemManagement;
 use App\Models\ItemSubCateogry;
+use App\Models\MerchantManagement;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -24,9 +25,17 @@ class AddVoucherController extends Controller
     {
         abort_if(Gate::denies('add_voucher_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $addVouchers = AddVoucher::with(['select_items', 'selected_categories', 'selected_sub_categories'])->get();
+        $addVouchers = AddVoucher::with(['select_items', 'selected_categories', 'selected_sub_categories', 'merchant'])->get();
 
-        return view('frontend.addVouchers.index', compact('addVouchers'));
+        $item_managements = ItemManagement::get();
+
+        $item_catrgories = ItemCatrgory::get();
+
+        $item_sub_cateogries = ItemSubCateogry::get();
+
+        $merchant_managements = MerchantManagement::get();
+
+        return view('frontend.addVouchers.index', compact('addVouchers', 'item_managements', 'item_catrgories', 'item_sub_cateogries', 'merchant_managements'));
     }
 
     public function create()
@@ -39,7 +48,9 @@ class AddVoucherController extends Controller
 
         $selected_sub_categories = ItemSubCateogry::all()->pluck('title', 'id');
 
-        return view('frontend.addVouchers.create', compact('select_items', 'selected_categories', 'selected_sub_categories'));
+        $merchants = MerchantManagement::all()->pluck('company_name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('frontend.addVouchers.create', compact('select_items', 'selected_categories', 'selected_sub_categories', 'merchants'));
     }
 
     public function store(StoreAddVoucherRequest $request)
@@ -66,9 +77,11 @@ class AddVoucherController extends Controller
 
         $selected_sub_categories = ItemSubCateogry::all()->pluck('title', 'id');
 
-        $addVoucher->load('select_items', 'selected_categories', 'selected_sub_categories');
+        $merchants = MerchantManagement::all()->pluck('company_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('frontend.addVouchers.edit', compact('select_items', 'selected_categories', 'selected_sub_categories', 'addVoucher'));
+        $addVoucher->load('select_items', 'selected_categories', 'selected_sub_categories', 'merchant');
+
+        return view('frontend.addVouchers.edit', compact('select_items', 'selected_categories', 'selected_sub_categories', 'merchants', 'addVoucher'));
     }
 
     public function update(UpdateAddVoucherRequest $request, AddVoucher $addVoucher)
@@ -85,7 +98,7 @@ class AddVoucherController extends Controller
     {
         abort_if(Gate::denies('add_voucher_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $addVoucher->load('select_items', 'selected_categories', 'selected_sub_categories');
+        $addVoucher->load('select_items', 'selected_categories', 'selected_sub_categories', 'merchant');
 
         return view('frontend.addVouchers.show', compact('addVoucher'));
     }

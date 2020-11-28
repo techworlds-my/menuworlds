@@ -20,7 +20,7 @@ class AddVoucherApiController extends Controller
     {
         abort_if(Gate::denies('add_voucher_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AddVoucherResource(AddVoucher::with(['select_items', 'selected_categories', 'selected_sub_categories'])->get());
+        return new AddVoucherResource(AddVoucher::with(['select_items', 'selected_categories', 'selected_sub_categories', 'merchant'])->get());
     }
 
     public function store(StoreAddVoucherRequest $request)
@@ -39,7 +39,7 @@ class AddVoucherApiController extends Controller
     {
         abort_if(Gate::denies('add_voucher_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AddVoucherResource($addVoucher->load(['select_items', 'selected_categories', 'selected_sub_categories']));
+        return new AddVoucherResource($addVoucher->load(['select_items', 'selected_categories', 'selected_sub_categories', 'merchant']));
     }
 
     public function update(UpdateAddVoucherRequest $request, AddVoucher $addVoucher)

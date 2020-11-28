@@ -43,6 +43,7 @@ class AddVoucher extends Model implements HasMedia
         'excluded_sales_item',
         'usage_limit',
         'limit_per_user',
+        'merchant_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -98,5 +99,10 @@ class AddVoucher extends Model implements HasMedia
     public function selected_sub_categories()
     {
         return $this->belongsToMany(ItemSubCateogry::class);
+    }
+
+    public function merchant()
+    {
+        return $this->belongsTo(MerchantManagement::class, 'merchant_id');
     }
 }

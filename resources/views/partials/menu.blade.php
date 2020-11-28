@@ -226,7 +226,7 @@
             </li>
         @endcan
         @can('order_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/order-managements*") ? "c-show" : "" }} {{ request()->is("admin/order-statuses*") ? "c-show" : "" }} {{ request()->is("admin/order-items*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/order-managements*") ? "c-show" : "" }} {{ request()->is("admin/order-statuses*") ? "c-show" : "" }} {{ request()->is("admin/order-items*") ? "c-show" : "" }} {{ request()->is("admin/order-types*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
 
@@ -264,11 +264,21 @@
                             </a>
                         </li>
                     @endcan
+                    @can('order_type_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.order-types.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/order-types") || request()->is("admin/order-types/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.orderType.title') }}
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
         @endcan
         @can('voucher_managment_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/add-vouchers*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/add-vouchers*") ? "c-show" : "" }} {{ request()->is("admin/voucher-reedems*") ? "c-show" : "" }} {{ request()->is("admin/voucher-wallets*") ? "c-show" : "" }} {{ request()->is("admin/voucher-categories*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
 
@@ -283,6 +293,36 @@
 
                                 </i>
                                 {{ trans('cruds.addVoucher.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('voucher_reedem_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.voucher-reedems.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/voucher-reedems") || request()->is("admin/voucher-reedems/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.voucherReedem.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('voucher_wallet_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.voucher-wallets.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/voucher-wallets") || request()->is("admin/voucher-wallets/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.voucherWallet.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('voucher_category_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.voucher-categories.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/voucher-categories") || request()->is("admin/voucher-categories/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.voucherCategory.title') }}
                             </a>
                         </li>
                     @endcan
@@ -331,56 +371,36 @@
                 </ul>
             </li>
         @endcan
-        @can('test_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/testasds*") ? "c-show" : "" }} {{ request()->is("admin/asdasds*") ? "c-show" : "" }}">
-                <a class="c-sidebar-nav-dropdown-toggle" href="#">
-                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.test.title') }}
-                </a>
-                <ul class="c-sidebar-nav-dropdown-items">
-                    @can('testasd_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.testasds.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/testasds") || request()->is("admin/testasds/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.testasd.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('asdasd_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.asdasds.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/asdasds") || request()->is("admin/asdasds/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.asdasd.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcan
-        @can('order_type_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.order-types.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/order-types") || request()->is("admin/order-types/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                    </i>
-                    {{ trans('cruds.orderType.title') }}
-                </a>
-            </li>
-        @endcan
         @can('seat_access')
-            <li class="c-sidebar-nav-item">
-                <a href="{{ route("admin.seats.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/seats") || request()->is("admin/seats/*") ? "c-active" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/seats-logs*") ? "c-show" : "" }} {{ request()->is("admin/seats-managements*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
 
                     </i>
                     {{ trans('cruds.seat.title') }}
                 </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('seats_log_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.seats-logs.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/seats-logs") || request()->is("admin/seats-logs/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.seatsLog.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('seats_management_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.seats-managements.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/seats-managements") || request()->is("admin/seats-managements/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.seatsManagement.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
             </li>
         @endcan
         @php($unread = \App\Models\QaTopic::unreadCount())

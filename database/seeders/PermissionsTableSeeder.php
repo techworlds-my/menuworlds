@@ -468,63 +468,63 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 115,
-                'title' => 'test_access',
-            ],
-            [
-                'id'    => 116,
                 'title' => 'order_type_create',
             ],
             [
-                'id'    => 117,
+                'id'    => 116,
                 'title' => 'order_type_edit',
             ],
             [
-                'id'    => 118,
+                'id'    => 117,
                 'title' => 'order_type_show',
             ],
             [
-                'id'    => 119,
+                'id'    => 118,
                 'title' => 'order_type_delete',
             ],
             [
-                'id'    => 120,
+                'id'    => 119,
                 'title' => 'order_type_access',
             ],
             [
+                'id'    => 120,
+                'title' => 'seats_log_create',
+            ],
+            [
                 'id'    => 121,
-                'title' => 'testasd_create',
+                'title' => 'seats_log_edit',
             ],
             [
                 'id'    => 122,
-                'title' => 'testasd_edit',
+                'title' => 'seats_log_show',
             ],
             [
                 'id'    => 123,
-                'title' => 'testasd_show',
+                'title' => 'seats_log_delete',
             ],
             [
                 'id'    => 124,
-                'title' => 'testasd_delete',
+                'title' => 'seats_log_access',
             ],
             [
                 'id'    => 125,
-                'title' => 'testasd_access',
+                'title' => 'seats_management_create',
             ],
             [
                 'id'    => 126,
-                'title' => 'seat_create',
+                'title' => 'seats_management_edit',
             ],
             [
                 'id'    => 127,
-                'title' => 'seat_edit',
+                'title' => 'seats_management_show',
             ],
             [
                 'id'    => 128,
-                'title' => 'seat_show',
+                'title' => 'seats_management_delete',
             ],
             [
                 'id'    => 129,
-                'title' => 'seat_delete',
+                'title' => 'seats_management_access',
             ],
             [
                 'id'    => 130,
@@ -532,26 +532,66 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 131,
-                'title' => 'asdasd_create',
+                'title' => 'voucher_reedem_create',
             ],
             [
                 'id'    => 132,
-                'title' => 'asdasd_edit',
+                'title' => 'voucher_reedem_edit',
             ],
             [
                 'id'    => 133,
-                'title' => 'asdasd_show',
+                'title' => 'voucher_reedem_show',
             ],
             [
                 'id'    => 134,
-                'title' => 'asdasd_delete',
+                'title' => 'voucher_reedem_delete',
             ],
             [
                 'id'    => 135,
-                'title' => 'asdasd_access',
+                'title' => 'voucher_reedem_access',
             ],
             [
                 'id'    => 136,
+                'title' => 'voucher_wallet_create',
+            ],
+            [
+                'id'    => 137,
+                'title' => 'voucher_wallet_edit',
+            ],
+            [
+                'id'    => 138,
+                'title' => 'voucher_wallet_show',
+            ],
+            [
+                'id'    => 139,
+                'title' => 'voucher_wallet_delete',
+            ],
+            [
+                'id'    => 140,
+                'title' => 'voucher_wallet_access',
+            ],
+            [
+                'id'    => 141,
+                'title' => 'voucher_category_create',
+            ],
+            [
+                'id'    => 142,
+                'title' => 'voucher_category_edit',
+            ],
+            [
+                'id'    => 143,
+                'title' => 'voucher_category_show',
+            ],
+            [
+                'id'    => 144,
+                'title' => 'voucher_category_delete',
+            ],
+            [
+                'id'    => 145,
+                'title' => 'voucher_category_access',
+            ],
+            [
+                'id'    => 146,
                 'title' => 'profile_password_edit',
             ],
         ];

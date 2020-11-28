@@ -157,6 +157,14 @@
                             {{ $addVoucher->limit_per_user }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.merchant') }}
+                        </th>
+                        <td>
+                            {{ $addVoucher->merchant->company_name ?? '' }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
