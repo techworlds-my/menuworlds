@@ -222,6 +222,21 @@
                                             {{ trans('cruds.addOnManagement.title') }}
                                         </a>
                                     @endcan
+                                    @can('test_access')
+                                        <a class="dropdown-item disabled" href="#">
+                                            {{ trans('cruds.test.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('testasd_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.testasds.index') }}">
+                                            {{ trans('cruds.testasd.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('order_type_access')
+                                        <a class="dropdown-item" href="{{ route('frontend.order-types.index') }}">
+                                            {{ trans('cruds.orderType.title') }}
+                                        </a>
+                                    @endcan
 
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

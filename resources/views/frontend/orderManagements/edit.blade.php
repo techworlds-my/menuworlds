@@ -163,6 +163,20 @@
                             <span class="help-block">{{ trans('cruds.orderManagement.fields.voucher_helper') }}</span>
                         </div>
                         <div class="form-group">
+                            <label for="order_type_id">{{ trans('cruds.orderManagement.fields.order_type') }}</label>
+                            <select class="form-control select2" name="order_type_id" id="order_type_id">
+                                @foreach($order_types as $id => $order_type)
+                                    <option value="{{ $id }}" {{ (old('order_type_id') ? old('order_type_id') : $orderManagement->order_type->id ?? '') == $id ? 'selected' : '' }}>{{ $order_type }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('order_type'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('order_type') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.orderManagement.fields.order_type_helper') }}</span>
+                        </div>
+                        <div class="form-group">
                             <button class="btn btn-danger" type="submit">
                                 {{ trans('global.save') }}
                             </button>

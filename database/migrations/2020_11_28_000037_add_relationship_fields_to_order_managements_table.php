@@ -17,6 +17,8 @@ class AddRelationshipFieldsToOrderManagementsTable extends Migration
             $table->foreign('status_id', 'status_fk_2673316')->references('id')->on('order_statuses');
             $table->unsignedBigInteger('voucher_id')->nullable();
             $table->foreign('voucher_id', 'voucher_fk_2673417')->references('id')->on('add_vouchers');
+            $table->unsignedBigInteger('order_type_id')->nullable();
+            $table->foreign('order_type_id', 'order_type_fk_2677860')->references('id')->on('order_types');
         });
     }
 }

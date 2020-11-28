@@ -120,6 +120,95 @@
                 <span class="help-block">{{ trans('cruds.addVoucher.fields.select_item_helper') }}</span>
             </div>
             <div class="form-group">
+                <label for="min_spend">{{ trans('cruds.addVoucher.fields.min_spend') }}</label>
+                <input class="form-control {{ $errors->has('min_spend') ? 'is-invalid' : '' }}" type="number" name="min_spend" id="min_spend" value="{{ old('min_spend', $addVoucher->min_spend) }}" step="1">
+                @if($errors->has('min_spend'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('min_spend') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.addVoucher.fields.min_spend_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="max_spend">{{ trans('cruds.addVoucher.fields.max_spend') }}</label>
+                <input class="form-control {{ $errors->has('max_spend') ? 'is-invalid' : '' }}" type="number" name="max_spend" id="max_spend" value="{{ old('max_spend', $addVoucher->max_spend) }}" step="1">
+                @if($errors->has('max_spend'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('max_spend') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.addVoucher.fields.max_spend_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <div class="form-check {{ $errors->has('excluded_sales_item') ? 'is-invalid' : '' }}">
+                    <input type="hidden" name="excluded_sales_item" value="0">
+                    <input class="form-check-input" type="checkbox" name="excluded_sales_item" id="excluded_sales_item" value="1" {{ $addVoucher->excluded_sales_item || old('excluded_sales_item', 0) === 1 ? 'checked' : '' }}>
+                    <label class="form-check-label" for="excluded_sales_item">{{ trans('cruds.addVoucher.fields.excluded_sales_item') }}</label>
+                </div>
+                @if($errors->has('excluded_sales_item'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('excluded_sales_item') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.addVoucher.fields.excluded_sales_item_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="selected_categories">{{ trans('cruds.addVoucher.fields.selected_category') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('selected_categories') ? 'is-invalid' : '' }}" name="selected_categories[]" id="selected_categories" multiple>
+                    @foreach($selected_categories as $id => $selected_category)
+                        <option value="{{ $id }}" {{ (in_array($id, old('selected_categories', [])) || $addVoucher->selected_categories->contains($id)) ? 'selected' : '' }}>{{ $selected_category }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('selected_categories'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('selected_categories') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.addVoucher.fields.selected_category_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="selected_sub_categories">{{ trans('cruds.addVoucher.fields.selected_sub_category') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('selected_sub_categories') ? 'is-invalid' : '' }}" name="selected_sub_categories[]" id="selected_sub_categories" multiple>
+                    @foreach($selected_sub_categories as $id => $selected_sub_category)
+                        <option value="{{ $id }}" {{ (in_array($id, old('selected_sub_categories', [])) || $addVoucher->selected_sub_categories->contains($id)) ? 'selected' : '' }}>{{ $selected_sub_category }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('selected_sub_categories'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('selected_sub_categories') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.addVoucher.fields.selected_sub_category_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="usage_limit">{{ trans('cruds.addVoucher.fields.usage_limit') }}</label>
+                <input class="form-control {{ $errors->has('usage_limit') ? 'is-invalid' : '' }}" type="number" name="usage_limit" id="usage_limit" value="{{ old('usage_limit', $addVoucher->usage_limit) }}" step="1">
+                @if($errors->has('usage_limit'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('usage_limit') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.addVoucher.fields.usage_limit_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="limit_per_user">{{ trans('cruds.addVoucher.fields.limit_per_user') }}</label>
+                <input class="form-control {{ $errors->has('limit_per_user') ? 'is-invalid' : '' }}" type="number" name="limit_per_user" id="limit_per_user" value="{{ old('limit_per_user', $addVoucher->limit_per_user) }}" step="1">
+                @if($errors->has('limit_per_user'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('limit_per_user') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.addVoucher.fields.limit_per_user_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}
                 </button>

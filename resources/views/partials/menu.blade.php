@@ -331,6 +331,38 @@
                 </ul>
             </li>
         @endcan
+        @can('test_access')
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/testasds*") ? "c-show" : "" }}">
+                <a class="c-sidebar-nav-dropdown-toggle" href="#">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.test.title') }}
+                </a>
+                <ul class="c-sidebar-nav-dropdown-items">
+                    @can('testasd_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.testasds.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/testasds") || request()->is("admin/testasds/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.testasd.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
+        @can('order_type_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.order-types.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/order-types") || request()->is("admin/order-types/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.orderType.title') }}
+                </a>
+            </li>
+        @endcan
         @php($unread = \App\Models\QaTopic::unreadCount())
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.messenger.index") }}" class="{{ request()->is("admin/messenger") || request()->is("admin/messenger/*") ? "c-active" : "" }} c-sidebar-nav-link">

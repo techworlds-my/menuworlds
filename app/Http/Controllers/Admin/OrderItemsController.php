@@ -21,7 +21,11 @@ class OrderItemsController extends Controller
 
         $orderItems = OrderItem::with(['item', 'order'])->get();
 
-        return view('admin.orderItems.index', compact('orderItems'));
+        $item_managements = ItemManagement::get();
+
+        $order_managements = OrderManagement::get();
+
+        return view('admin.orderItems.index', compact('orderItems', 'item_managements', 'order_managements'));
     }
 
     public function create()

@@ -20,13 +20,15 @@ class AddVoucherApiController extends Controller
     {
         abort_if(Gate::denies('add_voucher_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AddVoucherResource(AddVoucher::with(['select_items'])->get());
+        return new AddVoucherResource(AddVoucher::with(['select_items', 'selected_categories', 'selected_sub_categories'])->get());
     }
 
     public function store(StoreAddVoucherRequest $request)
     {
         $addVoucher = AddVoucher::create($request->all());
         $addVoucher->select_items()->sync($request->input('select_items', []));
+        $addVoucher->selected_categories()->sync($request->input('selected_categories', []));
+        $addVoucher->selected_sub_categories()->sync($request->input('selected_sub_categories', []));
 
         return (new AddVoucherResource($addVoucher))
             ->response()
@@ -37,13 +39,15 @@ class AddVoucherApiController extends Controller
     {
         abort_if(Gate::denies('add_voucher_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new AddVoucherResource($addVoucher->load(['select_items']));
+        return new AddVoucherResource($addVoucher->load(['select_items', 'selected_categories', 'selected_sub_categories']));
     }
 
     public function update(UpdateAddVoucherRequest $request, AddVoucher $addVoucher)
     {
         $addVoucher->update($request->all());
         $addVoucher->select_items()->sync($request->input('select_items', []));
+        $addVoucher->selected_categories()->sync($request->input('selected_categories', []));
+        $addVoucher->selected_sub_categories()->sync($request->input('selected_sub_categories', []));
 
         return (new AddVoucherResource($addVoucher))
             ->response()

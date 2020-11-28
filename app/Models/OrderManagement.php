@@ -33,6 +33,7 @@ class OrderManagement extends Model
         'status_id',
         'voucher_used',
         'voucher_id',
+        'order_type_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -77,5 +78,10 @@ class OrderManagement extends Model
     public function voucher()
     {
         return $this->belongsTo(AddVoucher::class, 'voucher_id');
+    }
+
+    public function order_type()
+    {
+        return $this->belongsTo(OrderType::class, 'order_type_id');
     }
 }

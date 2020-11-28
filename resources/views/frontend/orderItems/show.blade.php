@@ -44,10 +44,10 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.orderItem.fields.add_on') }}
+                                        {{ trans('cruds.orderItem.fields.price') }}
                                     </th>
                                     <td>
-                                        <input type="checkbox" disabled="disabled" {{ $orderItem->add_on ? 'checked' : '' }}>
+                                        {{ $orderItem->price }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -56,6 +56,22 @@
                                     </th>
                                     <td>
                                         {{ $orderItem->order->order ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.orderItem.fields.add_on') }}
+                                    </th>
+                                    <td>
+                                        {{ $orderItem->add_on }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.orderItem.fields.add_on_price') }}
+                                    </th>
+                                    <td>
+                                        {{ $orderItem->add_on_price }}
                                     </td>
                                 </tr>
                             </tbody>

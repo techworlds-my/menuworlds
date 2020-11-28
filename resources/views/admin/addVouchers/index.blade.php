@@ -50,6 +50,27 @@
                             {{ trans('cruds.addVoucher.fields.select_item') }}
                         </th>
                         <th>
+                            {{ trans('cruds.addVoucher.fields.min_spend') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.max_spend') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.excluded_sales_item') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.selected_category') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.selected_sub_category') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.usage_limit') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.limit_per_user') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -90,6 +111,32 @@
                                 @foreach($addVoucher->select_items as $key => $item)
                                     <span class="badge badge-info">{{ $item->title }}</span>
                                 @endforeach
+                            </td>
+                            <td>
+                                {{ $addVoucher->min_spend ?? '' }}
+                            </td>
+                            <td>
+                                {{ $addVoucher->max_spend ?? '' }}
+                            </td>
+                            <td>
+                                <span style="display:none">{{ $addVoucher->excluded_sales_item ?? '' }}</span>
+                                <input type="checkbox" disabled="disabled" {{ $addVoucher->excluded_sales_item ? 'checked' : '' }}>
+                            </td>
+                            <td>
+                                @foreach($addVoucher->selected_categories as $key => $item)
+                                    <span class="badge badge-info">{{ $item->title }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($addVoucher->selected_sub_categories as $key => $item)
+                                    <span class="badge badge-info">{{ $item->title }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                                {{ $addVoucher->usage_limit ?? '' }}
+                            </td>
+                            <td>
+                                {{ $addVoucher->limit_per_user ?? '' }}
                             </td>
                             <td>
                                 @can('add_voucher_show')

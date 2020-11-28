@@ -63,4 +63,10 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Add On Managements
     Route::apiResource('add-on-managements', 'AddOnManagementsApiController');
+
+    // Order Types
+    Route::apiResource('order-types', 'OrderTypeApiController');
+
+    // Testasds
+    Route::apiResource('testasds', 'TestasdApiController');
 });

@@ -38,6 +38,11 @@ class AddVoucher extends Model implements HasMedia
         'is_free_shipping',
         'is_credit_purchase',
         'expired_time',
+        'min_spend',
+        'max_spend',
+        'excluded_sales_item',
+        'usage_limit',
+        'limit_per_user',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -83,5 +88,15 @@ class AddVoucher extends Model implements HasMedia
     public function select_items()
     {
         return $this->belongsToMany(ItemManagement::class);
+    }
+
+    public function selected_categories()
+    {
+        return $this->belongsToMany(ItemCatrgory::class);
+    }
+
+    public function selected_sub_categories()
+    {
+        return $this->belongsToMany(ItemSubCateogry::class);
     }
 }

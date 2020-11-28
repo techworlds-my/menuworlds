@@ -65,6 +65,9 @@
                             {{ trans('cruds.orderManagement.fields.voucher') }}
                         </th>
                         <th>
+                            {{ trans('cruds.orderManagement.fields.order_type') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -117,6 +120,9 @@
                             </td>
                             <td>
                                 {{ $orderManagement->voucher->voucher_code ?? '' }}
+                            </td>
+                            <td>
+                                {{ $orderManagement->order_type->type ?? '' }}
                             </td>
                             <td>
                                 @can('order_management_show')
