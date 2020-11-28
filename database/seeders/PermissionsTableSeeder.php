@@ -176,419 +176,419 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'    => 42,
-                'title' => 'item_catrgory_create',
-            ],
-            [
-                'id'    => 43,
-                'title' => 'item_catrgory_edit',
-            ],
-            [
-                'id'    => 44,
-                'title' => 'item_catrgory_show',
-            ],
-            [
-                'id'    => 45,
-                'title' => 'item_catrgory_delete',
-            ],
-            [
-                'id'    => 46,
-                'title' => 'item_catrgory_access',
-            ],
-            [
-                'id'    => 47,
-                'title' => 'item_sub_cateogry_create',
-            ],
-            [
-                'id'    => 48,
-                'title' => 'item_sub_cateogry_edit',
-            ],
-            [
-                'id'    => 49,
-                'title' => 'item_sub_cateogry_show',
-            ],
-            [
-                'id'    => 50,
-                'title' => 'item_sub_cateogry_delete',
-            ],
-            [
-                'id'    => 51,
-                'title' => 'item_sub_cateogry_access',
-            ],
-            [
-                'id'    => 52,
                 'title' => 'item_management_create',
             ],
             [
-                'id'    => 53,
+                'id'    => 43,
                 'title' => 'item_management_edit',
             ],
             [
-                'id'    => 54,
+                'id'    => 44,
                 'title' => 'item_management_show',
             ],
             [
-                'id'    => 55,
+                'id'    => 45,
                 'title' => 'item_management_delete',
             ],
             [
-                'id'    => 56,
+                'id'    => 46,
                 'title' => 'item_management_access',
             ],
             [
-                'id'    => 57,
+                'id'    => 47,
                 'title' => 'merchant_level_create',
             ],
             [
-                'id'    => 58,
+                'id'    => 48,
                 'title' => 'merchant_level_edit',
             ],
             [
-                'id'    => 59,
+                'id'    => 49,
                 'title' => 'merchant_level_show',
             ],
             [
-                'id'    => 60,
+                'id'    => 50,
                 'title' => 'merchant_level_delete',
             ],
             [
-                'id'    => 61,
+                'id'    => 51,
                 'title' => 'merchant_level_access',
             ],
             [
-                'id'    => 62,
+                'id'    => 52,
                 'title' => 'location_access',
             ],
             [
-                'id'    => 63,
+                'id'    => 53,
                 'title' => 'state_create',
             ],
             [
-                'id'    => 64,
+                'id'    => 54,
                 'title' => 'state_edit',
             ],
             [
-                'id'    => 65,
+                'id'    => 55,
                 'title' => 'state_show',
             ],
             [
-                'id'    => 66,
+                'id'    => 56,
                 'title' => 'state_delete',
             ],
             [
-                'id'    => 67,
+                'id'    => 57,
                 'title' => 'state_access',
             ],
             [
-                'id'    => 68,
+                'id'    => 58,
                 'title' => 'city_create',
             ],
             [
-                'id'    => 69,
+                'id'    => 59,
                 'title' => 'city_edit',
             ],
             [
-                'id'    => 70,
+                'id'    => 60,
                 'title' => 'city_show',
             ],
             [
-                'id'    => 71,
+                'id'    => 61,
                 'title' => 'city_delete',
             ],
             [
-                'id'    => 72,
+                'id'    => 62,
                 'title' => 'city_access',
             ],
             [
-                'id'    => 73,
+                'id'    => 63,
                 'title' => 'area_create',
             ],
             [
-                'id'    => 74,
+                'id'    => 64,
                 'title' => 'area_edit',
             ],
             [
-                'id'    => 75,
+                'id'    => 65,
                 'title' => 'area_show',
             ],
             [
-                'id'    => 76,
+                'id'    => 66,
                 'title' => 'area_delete',
             ],
             [
-                'id'    => 77,
+                'id'    => 67,
                 'title' => 'area_access',
             ],
             [
-                'id'    => 78,
+                'id'    => 68,
                 'title' => 'voucher_managment_access',
             ],
             [
-                'id'    => 79,
+                'id'    => 69,
                 'title' => 'add_voucher_create',
             ],
             [
-                'id'    => 80,
+                'id'    => 70,
                 'title' => 'add_voucher_edit',
             ],
             [
-                'id'    => 81,
+                'id'    => 71,
                 'title' => 'add_voucher_show',
             ],
             [
-                'id'    => 82,
+                'id'    => 72,
                 'title' => 'add_voucher_delete',
             ],
             [
-                'id'    => 83,
+                'id'    => 73,
                 'title' => 'add_voucher_access',
             ],
             [
-                'id'    => 84,
+                'id'    => 74,
                 'title' => 'order_management_create',
             ],
             [
-                'id'    => 85,
+                'id'    => 75,
                 'title' => 'order_management_edit',
             ],
             [
-                'id'    => 86,
+                'id'    => 76,
                 'title' => 'order_management_show',
             ],
             [
-                'id'    => 87,
+                'id'    => 77,
                 'title' => 'order_management_delete',
             ],
             [
-                'id'    => 88,
+                'id'    => 78,
                 'title' => 'order_management_access',
             ],
             [
-                'id'    => 89,
+                'id'    => 79,
                 'title' => 'order_status_create',
             ],
             [
-                'id'    => 90,
+                'id'    => 80,
                 'title' => 'order_status_edit',
             ],
             [
-                'id'    => 91,
+                'id'    => 81,
                 'title' => 'order_status_show',
             ],
             [
-                'id'    => 92,
+                'id'    => 82,
                 'title' => 'order_status_delete',
             ],
             [
-                'id'    => 93,
+                'id'    => 83,
                 'title' => 'order_status_access',
             ],
             [
-                'id'    => 94,
+                'id'    => 84,
                 'title' => 'payment_method_create',
             ],
             [
-                'id'    => 95,
+                'id'    => 85,
                 'title' => 'payment_method_edit',
             ],
             [
-                'id'    => 96,
+                'id'    => 86,
                 'title' => 'payment_method_show',
             ],
             [
-                'id'    => 97,
+                'id'    => 87,
                 'title' => 'payment_method_delete',
             ],
             [
-                'id'    => 98,
+                'id'    => 88,
                 'title' => 'payment_method_access',
             ],
             [
-                'id'    => 99,
+                'id'    => 89,
                 'title' => 'order_item_create',
             ],
             [
-                'id'    => 100,
+                'id'    => 90,
                 'title' => 'order_item_edit',
             ],
             [
-                'id'    => 101,
+                'id'    => 91,
                 'title' => 'order_item_show',
             ],
             [
-                'id'    => 102,
+                'id'    => 92,
                 'title' => 'order_item_delete',
             ],
             [
-                'id'    => 103,
+                'id'    => 93,
                 'title' => 'order_item_access',
             ],
             [
-                'id'    => 104,
+                'id'    => 94,
                 'title' => 'add_on_access',
             ],
             [
-                'id'    => 105,
+                'id'    => 95,
                 'title' => 'add_on_category_create',
             ],
             [
-                'id'    => 106,
+                'id'    => 96,
                 'title' => 'add_on_category_edit',
             ],
             [
-                'id'    => 107,
+                'id'    => 97,
                 'title' => 'add_on_category_show',
             ],
             [
-                'id'    => 108,
+                'id'    => 98,
                 'title' => 'add_on_category_delete',
             ],
             [
-                'id'    => 109,
+                'id'    => 99,
                 'title' => 'add_on_category_access',
             ],
             [
-                'id'    => 110,
+                'id'    => 100,
                 'title' => 'add_on_management_create',
             ],
             [
-                'id'    => 111,
+                'id'    => 101,
                 'title' => 'add_on_management_edit',
             ],
             [
-                'id'    => 112,
+                'id'    => 102,
                 'title' => 'add_on_management_show',
             ],
             [
-                'id'    => 113,
+                'id'    => 103,
                 'title' => 'add_on_management_delete',
             ],
             [
-                'id'    => 114,
+                'id'    => 104,
                 'title' => 'add_on_management_access',
             ],
             [
-                'id'    => 115,
+                'id'    => 105,
                 'title' => 'order_type_create',
             ],
             [
-                'id'    => 116,
+                'id'    => 106,
                 'title' => 'order_type_edit',
             ],
             [
-                'id'    => 117,
+                'id'    => 107,
                 'title' => 'order_type_show',
             ],
             [
-                'id'    => 118,
+                'id'    => 108,
                 'title' => 'order_type_delete',
             ],
             [
-                'id'    => 119,
+                'id'    => 109,
                 'title' => 'order_type_access',
             ],
             [
-                'id'    => 120,
+                'id'    => 110,
                 'title' => 'seats_log_create',
             ],
             [
-                'id'    => 121,
+                'id'    => 111,
                 'title' => 'seats_log_edit',
             ],
             [
-                'id'    => 122,
+                'id'    => 112,
                 'title' => 'seats_log_show',
             ],
             [
-                'id'    => 123,
+                'id'    => 113,
                 'title' => 'seats_log_delete',
             ],
             [
-                'id'    => 124,
+                'id'    => 114,
                 'title' => 'seats_log_access',
             ],
             [
-                'id'    => 125,
+                'id'    => 115,
                 'title' => 'seats_management_create',
             ],
             [
-                'id'    => 126,
+                'id'    => 116,
                 'title' => 'seats_management_edit',
             ],
             [
-                'id'    => 127,
+                'id'    => 117,
                 'title' => 'seats_management_show',
             ],
             [
-                'id'    => 128,
+                'id'    => 118,
                 'title' => 'seats_management_delete',
             ],
             [
-                'id'    => 129,
+                'id'    => 119,
                 'title' => 'seats_management_access',
             ],
             [
-                'id'    => 130,
+                'id'    => 120,
                 'title' => 'seat_access',
             ],
             [
-                'id'    => 131,
+                'id'    => 121,
                 'title' => 'voucher_reedem_create',
             ],
             [
-                'id'    => 132,
+                'id'    => 122,
                 'title' => 'voucher_reedem_edit',
             ],
             [
-                'id'    => 133,
+                'id'    => 123,
                 'title' => 'voucher_reedem_show',
             ],
             [
-                'id'    => 134,
+                'id'    => 124,
                 'title' => 'voucher_reedem_delete',
             ],
             [
-                'id'    => 135,
+                'id'    => 125,
                 'title' => 'voucher_reedem_access',
             ],
             [
-                'id'    => 136,
+                'id'    => 126,
                 'title' => 'voucher_wallet_create',
             ],
             [
-                'id'    => 137,
+                'id'    => 127,
                 'title' => 'voucher_wallet_edit',
             ],
             [
-                'id'    => 138,
+                'id'    => 128,
                 'title' => 'voucher_wallet_show',
             ],
             [
-                'id'    => 139,
+                'id'    => 129,
                 'title' => 'voucher_wallet_delete',
             ],
             [
-                'id'    => 140,
+                'id'    => 130,
                 'title' => 'voucher_wallet_access',
             ],
             [
-                'id'    => 141,
+                'id'    => 131,
                 'title' => 'voucher_category_create',
             ],
             [
-                'id'    => 142,
+                'id'    => 132,
                 'title' => 'voucher_category_edit',
             ],
             [
-                'id'    => 143,
+                'id'    => 133,
                 'title' => 'voucher_category_show',
             ],
             [
-                'id'    => 144,
+                'id'    => 134,
                 'title' => 'voucher_category_delete',
             ],
             [
-                'id'    => 145,
+                'id'    => 135,
                 'title' => 'voucher_category_access',
+            ],
+            [
+                'id'    => 136,
+                'title' => 'item_sub_category_create',
+            ],
+            [
+                'id'    => 137,
+                'title' => 'item_sub_category_edit',
+            ],
+            [
+                'id'    => 138,
+                'title' => 'item_sub_category_show',
+            ],
+            [
+                'id'    => 139,
+                'title' => 'item_sub_category_delete',
+            ],
+            [
+                'id'    => 140,
+                'title' => 'item_sub_category_access',
+            ],
+            [
+                'id'    => 141,
+                'title' => 'item_category_create',
+            ],
+            [
+                'id'    => 142,
+                'title' => 'item_category_edit',
+            ],
+            [
+                'id'    => 143,
+                'title' => 'item_category_show',
+            ],
+            [
+                'id'    => 144,
+                'title' => 'item_category_delete',
+            ],
+            [
+                'id'    => 145,
+                'title' => 'item_category_access',
             ],
             [
                 'id'    => 146,

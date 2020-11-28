@@ -17,61 +17,61 @@ class StoreAddVoucherRequest extends FormRequest
     public function rules()
     {
         return [
-            'voucher_code'              => [
+            'voucher_code'     => [
                 'string',
                 'required',
             ],
-            'value'                     => [
+            'value'            => [
                 'required',
             ],
-            'redeem_point'              => [
+            'redeem_point'     => [
                 'numeric',
             ],
-            'expired_time'              => [
+            'expired_time'     => [
                 'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
                 'nullable',
             ],
-            'select_items.*'            => [
+            'select_items.*'   => [
                 'integer',
             ],
-            'select_items'              => [
+            'select_items'     => [
                 'array',
             ],
-            'min_spend'                 => [
+            'min_spend'        => [
                 'nullable',
                 'integer',
                 'min:-2147483648',
                 'max:2147483647',
             ],
-            'max_spend'                 => [
+            'max_spend'        => [
                 'nullable',
                 'integer',
                 'min:-2147483648',
                 'max:2147483647',
             ],
-            'selected_categories.*'     => [
+            'usage_limit'      => [
+                'nullable',
+                'integer',
+                'min:-2147483648',
+                'max:2147483647',
+            ],
+            'limit_per_user'   => [
+                'nullable',
+                'integer',
+                'min:-2147483648',
+                'max:2147483647',
+            ],
+            'categories.*'     => [
                 'integer',
             ],
-            'selected_categories'       => [
+            'categories'       => [
                 'array',
             ],
-            'selected_sub_categories.*' => [
+            'sub_categories.*' => [
                 'integer',
             ],
-            'selected_sub_categories'   => [
+            'sub_categories'   => [
                 'array',
-            ],
-            'usage_limit'               => [
-                'nullable',
-                'integer',
-                'min:-2147483648',
-                'max:2147483647',
-            ],
-            'limit_per_user'            => [
-                'nullable',
-                'integer',
-                'min:-2147483648',
-                'max:2147483647',
             ],
         ];
     }

@@ -120,18 +120,26 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.itemManagement.fields.sub_cateogry') }}
+                                        {{ trans('cruds.itemManagement.fields.sub_category') }}
                                     </th>
                                     <td>
-                                        {{ $itemManagement->sub_cateogry->title ?? '' }}
+                                        {{ $itemManagement->sub_category->title ?? '' }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.itemManagement.fields.categpry') }}
+                                        {{ trans('cruds.itemManagement.fields.category') }}
                                     </th>
                                     <td>
-                                        {{ $itemManagement->categpry->title ?? '' }}
+                                        {{ $itemManagement->category->title ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.itemManagement.fields.merchant') }}
+                                    </th>
+                                    <td>
+                                        {{ $itemManagement->merchant->company_name ?? '' }}
                                     </td>
                                 </tr>
                             </tbody>

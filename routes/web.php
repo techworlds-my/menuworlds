@@ -38,14 +38,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('merchant-managements/ckmedia', 'MerchantManagementController@storeCKEditorImages')->name('merchant-managements.storeCKEditorImages');
     Route::resource('merchant-managements', 'MerchantManagementController');
 
-    // Item Catrgories
-    Route::delete('item-catrgories/destroy', 'ItemCatrgoryController@massDestroy')->name('item-catrgories.massDestroy');
-    Route::resource('item-catrgories', 'ItemCatrgoryController');
-
-    // Item Sub Cateogries
-    Route::delete('item-sub-cateogries/destroy', 'ItemSubCateogryController@massDestroy')->name('item-sub-cateogries.massDestroy');
-    Route::resource('item-sub-cateogries', 'ItemSubCateogryController');
-
     // Item Managements
     Route::delete('item-managements/destroy', 'ItemManagementController@massDestroy')->name('item-managements.massDestroy');
     Route::post('item-managements/media', 'ItemManagementController@storeMedia')->name('item-managements.storeMedia');
@@ -122,6 +114,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('voucher-categories/destroy', 'VoucherCategoryController@massDestroy')->name('voucher-categories.massDestroy');
     Route::resource('voucher-categories', 'VoucherCategoryController');
 
+    // Item Sub Categories
+    Route::delete('item-sub-categories/destroy', 'ItemSubCategoryController@massDestroy')->name('item-sub-categories.massDestroy');
+    Route::resource('item-sub-categories', 'ItemSubCategoryController');
+
+    // Item Categories
+    Route::delete('item-categories/destroy', 'ItemCategoryController@massDestroy')->name('item-categories.massDestroy');
+    Route::resource('item-categories', 'ItemCategoryController');
+
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
     Route::post('messenger', 'MessengerController@storeTopic')->name('messenger.storeTopic');
@@ -176,14 +176,6 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Merchant Managements
     Route::delete('merchant-managements/destroy', 'MerchantManagementController@massDestroy')->name('merchant-managements.massDestroy');
     Route::resource('merchant-managements', 'MerchantManagementController');
-
-    // Item Catrgories
-    Route::delete('item-catrgories/destroy', 'ItemCatrgoryController@massDestroy')->name('item-catrgories.massDestroy');
-    Route::resource('item-catrgories', 'ItemCatrgoryController');
-
-    // Item Sub Cateogries
-    Route::delete('item-sub-cateogries/destroy', 'ItemSubCateogryController@massDestroy')->name('item-sub-cateogries.massDestroy');
-    Route::resource('item-sub-cateogries', 'ItemSubCateogryController');
 
     // Item Managements
     Route::delete('item-managements/destroy', 'ItemManagementController@massDestroy')->name('item-managements.massDestroy');
@@ -256,6 +248,14 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Voucher Categories
     Route::delete('voucher-categories/destroy', 'VoucherCategoryController@massDestroy')->name('voucher-categories.massDestroy');
     Route::resource('voucher-categories', 'VoucherCategoryController');
+
+    // Item Sub Categories
+    Route::delete('item-sub-categories/destroy', 'ItemSubCategoryController@massDestroy')->name('item-sub-categories.massDestroy');
+    Route::resource('item-sub-categories', 'ItemSubCategoryController');
+
+    // Item Categories
+    Route::delete('item-categories/destroy', 'ItemCategoryController@massDestroy')->name('item-categories.massDestroy');
+    Route::resource('item-categories', 'ItemCategoryController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

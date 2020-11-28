@@ -59,10 +59,13 @@
                                         {{ trans('cruds.itemManagement.fields.is_halal') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.itemManagement.fields.sub_cateogry') }}
+                                        {{ trans('cruds.itemManagement.fields.sub_category') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.itemManagement.fields.categpry') }}
+                                        {{ trans('cruds.itemManagement.fields.category') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.itemManagement.fields.merchant') }}
                                     </th>
                                     <th>
                                         &nbsp;
@@ -103,7 +106,7 @@
                                     <td>
                                         <select class="search">
                                             <option value>{{ trans('global.all') }}</option>
-                                            @foreach($item_sub_cateogries as $key => $item)
+                                            @foreach($item_sub_categories as $key => $item)
                                                 <option value="{{ $item->title }}">{{ $item->title }}</option>
                                             @endforeach
                                         </select>
@@ -111,8 +114,16 @@
                                     <td>
                                         <select class="search">
                                             <option value>{{ trans('global.all') }}</option>
-                                            @foreach($item_catrgories as $key => $item)
+                                            @foreach($item_categories as $key => $item)
                                                 <option value="{{ $item->title }}">{{ $item->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <select class="search">
+                                            <option value>{{ trans('global.all') }}</option>
+                                            @foreach($merchant_managements as $key => $item)
+                                                <option value="{{ $item->company_name }}">{{ $item->company_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
@@ -170,10 +181,13 @@
                                             <input type="checkbox" disabled="disabled" {{ $itemManagement->is_halal ? 'checked' : '' }}>
                                         </td>
                                         <td>
-                                            {{ $itemManagement->sub_cateogry->title ?? '' }}
+                                            {{ $itemManagement->sub_category->title ?? '' }}
                                         </td>
                                         <td>
-                                            {{ $itemManagement->categpry->title ?? '' }}
+                                            {{ $itemManagement->category->title ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $itemManagement->merchant->company_name ?? '' }}
                                         </td>
                                         <td>
                                             @can('item_management_show')

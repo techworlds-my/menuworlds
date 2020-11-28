@@ -139,32 +139,46 @@
                 <span class="help-block">{{ trans('cruds.itemManagement.fields.is_halal_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="sub_cateogry_id">{{ trans('cruds.itemManagement.fields.sub_cateogry') }}</label>
-                <select class="form-control select2 {{ $errors->has('sub_cateogry') ? 'is-invalid' : '' }}" name="sub_cateogry_id" id="sub_cateogry_id">
-                    @foreach($sub_cateogries as $id => $sub_cateogry)
-                        <option value="{{ $id }}" {{ old('sub_cateogry_id') == $id ? 'selected' : '' }}>{{ $sub_cateogry }}</option>
+                <label for="sub_category_id">{{ trans('cruds.itemManagement.fields.sub_category') }}</label>
+                <select class="form-control select2 {{ $errors->has('sub_category') ? 'is-invalid' : '' }}" name="sub_category_id" id="sub_category_id">
+                    @foreach($sub_categories as $id => $sub_category)
+                        <option value="{{ $id }}" {{ old('sub_category_id') == $id ? 'selected' : '' }}>{{ $sub_category }}</option>
                     @endforeach
                 </select>
-                @if($errors->has('sub_cateogry'))
+                @if($errors->has('sub_category'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('sub_cateogry') }}
+                        {{ $errors->first('sub_category') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.itemManagement.fields.sub_cateogry_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.itemManagement.fields.sub_category_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="categpry_id">{{ trans('cruds.itemManagement.fields.categpry') }}</label>
-                <select class="form-control select2 {{ $errors->has('categpry') ? 'is-invalid' : '' }}" name="categpry_id" id="categpry_id">
-                    @foreach($categpries as $id => $categpry)
-                        <option value="{{ $id }}" {{ old('categpry_id') == $id ? 'selected' : '' }}>{{ $categpry }}</option>
+                <label for="category_id">{{ trans('cruds.itemManagement.fields.category') }}</label>
+                <select class="form-control select2 {{ $errors->has('category') ? 'is-invalid' : '' }}" name="category_id" id="category_id">
+                    @foreach($categories as $id => $category)
+                        <option value="{{ $id }}" {{ old('category_id') == $id ? 'selected' : '' }}>{{ $category }}</option>
                     @endforeach
                 </select>
-                @if($errors->has('categpry'))
+                @if($errors->has('category'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('categpry') }}
+                        {{ $errors->first('category') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.itemManagement.fields.categpry_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.itemManagement.fields.category_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="merchant_id">{{ trans('cruds.itemManagement.fields.merchant') }}</label>
+                <select class="form-control select2 {{ $errors->has('merchant') ? 'is-invalid' : '' }}" name="merchant_id" id="merchant_id">
+                    @foreach($merchants as $id => $merchant)
+                        <option value="{{ $id }}" {{ old('merchant_id') == $id ? 'selected' : '' }}>{{ $merchant }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('merchant'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('merchant') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.itemManagement.fields.merchant_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

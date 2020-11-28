@@ -14,20 +14,6 @@
                         @method('PUT')
                         @csrf
                         <div class="form-group">
-                            <label for="item_id">{{ trans('cruds.orderItem.fields.item') }}</label>
-                            <select class="form-control select2" name="item_id" id="item_id">
-                                @foreach($items as $id => $item)
-                                    <option value="{{ $id }}" {{ (old('item_id') ? old('item_id') : $orderItem->item->id ?? '') == $id ? 'selected' : '' }}>{{ $item }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('item'))
-                                <div class="invalid-feedback">
-                                    {{ $errors->first('item') }}
-                                </div>
-                            @endif
-                            <span class="help-block">{{ trans('cruds.orderItem.fields.item_helper') }}</span>
-                        </div>
-                        <div class="form-group">
                             <label for="quantity">{{ trans('cruds.orderItem.fields.quantity') }}</label>
                             <input class="form-control" type="number" name="quantity" id="quantity" value="{{ old('quantity', $orderItem->quantity) }}" step="1">
                             @if($errors->has('quantity'))
@@ -80,6 +66,20 @@
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.orderItem.fields.add_on_price_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="item_id">{{ trans('cruds.orderItem.fields.item') }}</label>
+                            <select class="form-control select2" name="item_id" id="item_id">
+                                @foreach($items as $id => $item)
+                                    <option value="{{ $id }}" {{ (old('item_id') ? old('item_id') : $orderItem->item->id ?? '') == $id ? 'selected' : '' }}>{{ $item }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('item'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('item') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.orderItem.fields.item_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">

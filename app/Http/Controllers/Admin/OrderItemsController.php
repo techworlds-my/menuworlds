@@ -19,24 +19,24 @@ class OrderItemsController extends Controller
     {
         abort_if(Gate::denies('order_item_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $orderItems = OrderItem::with(['item', 'order'])->get();
-
-        $item_managements = ItemManagement::get();
+        $orderItems = OrderItem::with(['order', 'item'])->get();
 
         $order_managements = OrderManagement::get();
 
-        return view('admin.orderItems.index', compact('orderItems', 'item_managements', 'order_managements'));
+        $item_managements = ItemManagement::get();
+
+        return view('admin.orderItems.index', compact('orderItems', 'order_managements', 'item_managements'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('order_item_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $items = ItemManagement::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $orders = OrderManagement::all()->pluck('order', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.orderItems.create', compact('items', 'orders'));
+        $items = ItemManagement::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.orderItems.create', compact('orders', 'items'));
     }
 
     public function store(StoreOrderItemRequest $request)
@@ -50,13 +50,13 @@ class OrderItemsController extends Controller
     {
         abort_if(Gate::denies('order_item_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $items = ItemManagement::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
         $orders = OrderManagement::all()->pluck('order', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $orderItem->load('item', 'order');
+        $items = ItemManagement::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.orderItems.edit', compact('items', 'orders', 'orderItem'));
+        $orderItem->load('order', 'item');
+
+        return view('admin.orderItems.edit', compact('orders', 'items', 'orderItem'));
     }
 
     public function update(UpdateOrderItemRequest $request, OrderItem $orderItem)
@@ -70,7 +70,7 @@ class OrderItemsController extends Controller
     {
         abort_if(Gate::denies('order_item_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $orderItem->load('item', 'order');
+        $orderItem->load('order', 'item');
 
         return view('admin.orderItems.show', compact('orderItem'));
     }

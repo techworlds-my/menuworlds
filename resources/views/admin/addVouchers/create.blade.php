@@ -152,42 +152,6 @@
                 <span class="help-block">{{ trans('cruds.addVoucher.fields.excluded_sales_item_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="selected_categories">{{ trans('cruds.addVoucher.fields.selected_category') }}</label>
-                <div style="padding-bottom: 4px">
-                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
-                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
-                </div>
-                <select class="form-control select2 {{ $errors->has('selected_categories') ? 'is-invalid' : '' }}" name="selected_categories[]" id="selected_categories" multiple>
-                    @foreach($selected_categories as $id => $selected_category)
-                        <option value="{{ $id }}" {{ in_array($id, old('selected_categories', [])) ? 'selected' : '' }}>{{ $selected_category }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('selected_categories'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('selected_categories') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.addVoucher.fields.selected_category_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="selected_sub_categories">{{ trans('cruds.addVoucher.fields.selected_sub_category') }}</label>
-                <div style="padding-bottom: 4px">
-                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
-                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
-                </div>
-                <select class="form-control select2 {{ $errors->has('selected_sub_categories') ? 'is-invalid' : '' }}" name="selected_sub_categories[]" id="selected_sub_categories" multiple>
-                    @foreach($selected_sub_categories as $id => $selected_sub_category)
-                        <option value="{{ $id }}" {{ in_array($id, old('selected_sub_categories', [])) ? 'selected' : '' }}>{{ $selected_sub_category }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('selected_sub_categories'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('selected_sub_categories') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.addVoucher.fields.selected_sub_category_helper') }}</span>
-            </div>
-            <div class="form-group">
                 <label for="usage_limit">{{ trans('cruds.addVoucher.fields.usage_limit') }}</label>
                 <input class="form-control {{ $errors->has('usage_limit') ? 'is-invalid' : '' }}" type="number" name="usage_limit" id="usage_limit" value="{{ old('usage_limit', '') }}" step="1">
                 @if($errors->has('usage_limit'))
@@ -220,6 +184,42 @@
                     </div>
                 @endif
                 <span class="help-block">{{ trans('cruds.addVoucher.fields.merchant_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="categories">{{ trans('cruds.addVoucher.fields.category') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('categories') ? 'is-invalid' : '' }}" name="categories[]" id="categories" multiple>
+                    @foreach($categories as $id => $category)
+                        <option value="{{ $id }}" {{ in_array($id, old('categories', [])) ? 'selected' : '' }}>{{ $category }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('categories'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('categories') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.addVoucher.fields.category_helper') }}</span>
+            </div>
+            <div class="form-group">
+                <label for="sub_categories">{{ trans('cruds.addVoucher.fields.sub_category') }}</label>
+                <div style="padding-bottom: 4px">
+                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
+                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
+                </div>
+                <select class="form-control select2 {{ $errors->has('sub_categories') ? 'is-invalid' : '' }}" name="sub_categories[]" id="sub_categories" multiple>
+                    @foreach($sub_categories as $id => $sub_category)
+                        <option value="{{ $id }}" {{ in_array($id, old('sub_categories', [])) ? 'selected' : '' }}>{{ $sub_category }}</option>
+                    @endforeach
+                </select>
+                @if($errors->has('sub_categories'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('sub_categories') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.addVoucher.fields.sub_category_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

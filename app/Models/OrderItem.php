@@ -20,12 +20,12 @@ class OrderItem extends Model
     ];
 
     protected $fillable = [
-        'item_id',
         'quantity',
         'price',
         'order_id',
         'add_on',
         'add_on_price',
+        'item_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -52,13 +52,13 @@ class OrderItem extends Model
         $this->save();
     }
 
-    public function item()
-    {
-        return $this->belongsTo(ItemManagement::class, 'item_id');
-    }
-
     public function order()
     {
         return $this->belongsTo(OrderManagement::class, 'order_id');
+    }
+
+    public function item()
+    {
+        return $this->belongsTo(ItemManagement::class, 'item_id');
     }
 }
