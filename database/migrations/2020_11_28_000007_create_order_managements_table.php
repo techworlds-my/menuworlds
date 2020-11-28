@@ -19,6 +19,7 @@ class CreateOrderManagementsTable extends Migration
             $table->decimal('total', 15, 2);
             $table->string('comment')->nullable();
             $table->boolean('voucher_used')->default(0)->nullable();
+            $table->datetime('time_needed')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

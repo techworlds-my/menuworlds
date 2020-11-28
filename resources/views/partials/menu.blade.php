@@ -332,7 +332,7 @@
             </li>
         @endcan
         @can('test_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/testasds*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/testasds*") ? "c-show" : "" }} {{ request()->is("admin/asdasds*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
 
@@ -350,6 +350,16 @@
                             </a>
                         </li>
                     @endcan
+                    @can('asdasd_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.asdasds.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/asdasds") || request()->is("admin/asdasds/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.asdasd.title') }}
+                            </a>
+                        </li>
+                    @endcan
                 </ul>
             </li>
         @endcan
@@ -360,6 +370,16 @@
 
                     </i>
                     {{ trans('cruds.orderType.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('seat_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.seats.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/seats") || request()->is("admin/seats/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.seat.title') }}
                 </a>
             </li>
         @endcan

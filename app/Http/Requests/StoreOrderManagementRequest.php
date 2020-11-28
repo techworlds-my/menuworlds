@@ -17,27 +17,31 @@ class StoreOrderManagementRequest extends FormRequest
     public function rules()
     {
         return [
-            'order'    => [
+            'order'       => [
                 'string',
                 'required',
                 'unique:order_managements',
             ],
-            'username' => [
+            'username'    => [
                 'string',
                 'required',
             ],
-            'address'  => [
+            'address'     => [
                 'string',
                 'required',
             ],
-            'price'    => [
+            'price'       => [
                 'required',
             ],
-            'total'    => [
+            'total'       => [
                 'required',
             ],
-            'comment'  => [
+            'comment'     => [
                 'string',
+                'nullable',
+            ],
+            'time_needed' => [
+                'date_format:' . config('panel.date_format') . ' ' . config('panel.time_format'),
                 'nullable',
             ],
         ];

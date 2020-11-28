@@ -135,6 +135,14 @@
                             {{ $orderManagement->order_type->type ?? '' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.orderManagement.fields.time_needed') }}
+                        </th>
+                        <td>
+                            {{ $orderManagement->time_needed }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

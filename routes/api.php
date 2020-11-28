@@ -69,4 +69,10 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Testasds
     Route::apiResource('testasds', 'TestasdApiController');
+
+    // Seats
+    Route::apiResource('seats', 'SeatsApiController');
+
+    // Asdasds
+    Route::apiResource('asdasds', 'AsdasdApiController');
 });

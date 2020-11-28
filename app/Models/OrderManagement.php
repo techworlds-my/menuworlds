@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -14,6 +15,7 @@ class OrderManagement extends Model
     public $table = 'order_managements';
 
     protected $dates = [
+        'time_needed',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -34,6 +36,7 @@ class OrderManagement extends Model
         'voucher_used',
         'voucher_id',
         'order_type_id',
+        'time_needed',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -83,5 +86,15 @@ class OrderManagement extends Model
     public function order_type()
     {
         return $this->belongsTo(OrderType::class, 'order_type_id');
+    }
+
+    public function getTimeNeededAttribute($value)
+    {
+        return $value ? Carbon::createFromFormat('Y-m-d H:i:s', $value)->format(config('panel.date_format') . ' ' . config('panel.time_format')) : null;
+    }
+
+    public function setTimeNeededAttribute($value)
+    {
+        $this->attributes['time_needed'] = $value ? Carbon::createFromFormat(config('panel.date_format') . ' ' . config('panel.time_format'), $value)->format('Y-m-d H:i:s') : null;
     }
 }
