@@ -97,6 +97,66 @@
                             @endforeach
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.min_spend') }}
+                        </th>
+                        <td>
+                            {{ $addVoucher->min_spend }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.max_spend') }}
+                        </th>
+                        <td>
+                            {{ $addVoucher->max_spend }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.excluded_sales_item') }}
+                        </th>
+                        <td>
+                            <input type="checkbox" disabled="disabled" {{ $addVoucher->excluded_sales_item ? 'checked' : '' }}>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.selected_category') }}
+                        </th>
+                        <td>
+                            @foreach($addVoucher->selected_categories as $key => $selected_category)
+                                <span class="label label-info">{{ $selected_category->title }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.selected_sub_category') }}
+                        </th>
+                        <td>
+                            @foreach($addVoucher->selected_sub_categories as $key => $selected_sub_category)
+                                <span class="label label-info">{{ $selected_sub_category->title }}</span>
+                            @endforeach
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.usage_limit') }}
+                        </th>
+                        <td>
+                            {{ $addVoucher->usage_limit }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.limit_per_user') }}
+                        </th>
+                        <td>
+                            {{ $addVoucher->limit_per_user }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

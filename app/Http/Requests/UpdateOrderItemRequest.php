@@ -23,6 +23,10 @@ class UpdateOrderItemRequest extends FormRequest
                 'min:-2147483648',
                 'max:2147483647',
             ],
+            'add_on'   => [
+                'string',
+                'nullable',
+            ],
         ];
     }
 }

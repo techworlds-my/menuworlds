@@ -10,6 +10,7 @@ use App\Models\AddVoucher;
 use App\Models\MerchantManagement;
 use App\Models\OrderManagement;
 use App\Models\OrderStatus;
+use App\Models\OrderType;
 use App\Models\PaymentMethod;
 use Gate;
 use Illuminate\Http\Request;
@@ -21,7 +22,7 @@ class OrderManagementsController extends Controller
     {
         abort_if(Gate::denies('order_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $orderManagements = OrderManagement::with(['merchant', 'payment_method', 'status', 'voucher'])->get();
+        $orderManagements = OrderManagement::with(['merchant', 'payment_method', 'status', 'voucher', 'order_type'])->get();
 
         return view('admin.orderManagements.index', compact('orderManagements'));
     }
@@ -38,7 +39,9 @@ class OrderManagementsController extends Controller
 
         $vouchers = AddVoucher::all()->pluck('voucher_code', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.orderManagements.create', compact('merchants', 'payment_methods', 'statuses', 'vouchers'));
+        $order_types = OrderType::all()->pluck('type', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.orderManagements.create', compact('merchants', 'payment_methods', 'statuses', 'vouchers', 'order_types'));
     }
 
     public function store(StoreOrderManagementRequest $request)
@@ -60,9 +63,11 @@ class OrderManagementsController extends Controller
 
         $vouchers = AddVoucher::all()->pluck('voucher_code', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $orderManagement->load('merchant', 'payment_method', 'status', 'voucher');
+        $order_types = OrderType::all()->pluck('type', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.orderManagements.edit', compact('merchants', 'payment_methods', 'statuses', 'vouchers', 'orderManagement'));
+        $orderManagement->load('merchant', 'payment_method', 'status', 'voucher', 'order_type');
+
+        return view('admin.orderManagements.edit', compact('merchants', 'payment_methods', 'statuses', 'vouchers', 'order_types', 'orderManagement'));
     }
 
     public function update(UpdateOrderManagementRequest $request, OrderManagement $orderManagement)
@@ -76,7 +81,7 @@ class OrderManagementsController extends Controller
     {
         abort_if(Gate::denies('order_management_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $orderManagement->load('merchant', 'payment_method', 'status', 'voucher');
+        $orderManagement->load('merchant', 'payment_method', 'status', 'voucher', 'order_type');
 
         return view('admin.orderManagements.show', compact('orderManagement'));
     }

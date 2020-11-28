@@ -38,17 +38,14 @@
                             <span class="help-block">{{ trans('cruds.orderItem.fields.quantity_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <div>
-                                <input type="hidden" name="add_on" value="0">
-                                <input type="checkbox" name="add_on" id="add_on" value="1" {{ old('add_on', 0) == 1 ? 'checked' : '' }}>
-                                <label for="add_on">{{ trans('cruds.orderItem.fields.add_on') }}</label>
-                            </div>
-                            @if($errors->has('add_on'))
+                            <label for="price">{{ trans('cruds.orderItem.fields.price') }}</label>
+                            <input class="form-control" type="number" name="price" id="price" value="{{ old('price', '') }}" step="0.01">
+                            @if($errors->has('price'))
                                 <div class="invalid-feedback">
-                                    {{ $errors->first('add_on') }}
+                                    {{ $errors->first('price') }}
                                 </div>
                             @endif
-                            <span class="help-block">{{ trans('cruds.orderItem.fields.add_on_helper') }}</span>
+                            <span class="help-block">{{ trans('cruds.orderItem.fields.price_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <label for="order_id">{{ trans('cruds.orderItem.fields.order') }}</label>
@@ -63,6 +60,26 @@
                                 </div>
                             @endif
                             <span class="help-block">{{ trans('cruds.orderItem.fields.order_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="add_on">{{ trans('cruds.orderItem.fields.add_on') }}</label>
+                            <input class="form-control" type="text" name="add_on" id="add_on" value="{{ old('add_on', '') }}">
+                            @if($errors->has('add_on'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('add_on') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.orderItem.fields.add_on_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="add_on_price">{{ trans('cruds.orderItem.fields.add_on_price') }}</label>
+                            <input class="form-control" type="number" name="add_on_price" id="add_on_price" value="{{ old('add_on_price', '') }}" step="0.01">
+                            @if($errors->has('add_on_price'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('add_on_price') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.orderItem.fields.add_on_price_helper') }}</span>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-danger" type="submit">

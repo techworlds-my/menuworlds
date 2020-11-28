@@ -18,6 +18,11 @@ class CreateAddVouchersTable extends Migration
             $table->boolean('is_free_shipping')->default(0)->nullable();
             $table->boolean('is_credit_purchase')->default(0)->nullable();
             $table->datetime('expired_time')->nullable();
+            $table->integer('min_spend')->nullable();
+            $table->integer('max_spend')->nullable();
+            $table->boolean('excluded_sales_item')->default(0)->nullable();
+            $table->integer('usage_limit')->nullable();
+            $table->integer('limit_per_user')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

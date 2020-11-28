@@ -32,14 +32,57 @@
                                         {{ trans('cruds.orderItem.fields.quantity') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.orderItem.fields.add_on') }}
+                                        {{ trans('cruds.orderItem.fields.price') }}
                                     </th>
                                     <th>
                                         {{ trans('cruds.orderItem.fields.order') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.orderItem.fields.add_on') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.orderItem.fields.add_on_price') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                    </td>
+                                    <td>
+                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                    </td>
+                                    <td>
+                                        <select class="search">
+                                            <option value>{{ trans('global.all') }}</option>
+                                            @foreach($item_managements as $key => $item)
+                                                <option value="{{ $item->title }}">{{ $item->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                    </td>
+                                    <td>
+                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                    </td>
+                                    <td>
+                                        <select class="search">
+                                            <option value>{{ trans('global.all') }}</option>
+                                            @foreach($order_managements as $key => $item)
+                                                <option value="{{ $item->order }}">{{ $item->order }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                    </td>
+                                    <td>
+                                        <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                                    </td>
+                                    <td>
+                                    </td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,11 +98,16 @@
                                             {{ $orderItem->quantity ?? '' }}
                                         </td>
                                         <td>
-                                            <span style="display:none">{{ $orderItem->add_on ?? '' }}</span>
-                                            <input type="checkbox" disabled="disabled" {{ $orderItem->add_on ? 'checked' : '' }}>
+                                            {{ $orderItem->price ?? '' }}
                                         </td>
                                         <td>
                                             {{ $orderItem->order->order ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $orderItem->add_on ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $orderItem->add_on_price ?? '' }}
                                         </td>
                                         <td>
                                             @can('order_item_show')
@@ -141,7 +189,14 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  
+  $('.datatable thead').on('input', '.search', function () {
+      let strict = $(this).attr('strict') || false
+      let value = strict && this.value ? "^" + this.value + "$" : this.value
+      table
+        .column($(this).parent().index())
+        .search(value, strict)
+        .draw()
+  });
 })
 
 </script>

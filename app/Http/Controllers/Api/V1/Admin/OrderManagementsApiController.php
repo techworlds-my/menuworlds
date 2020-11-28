@@ -17,7 +17,7 @@ class OrderManagementsApiController extends Controller
     {
         abort_if(Gate::denies('order_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new OrderManagementResource(OrderManagement::with(['merchant', 'payment_method', 'status', 'voucher'])->get());
+        return new OrderManagementResource(OrderManagement::with(['merchant', 'payment_method', 'status', 'voucher', 'order_type'])->get());
     }
 
     public function store(StoreOrderManagementRequest $request)
@@ -33,7 +33,7 @@ class OrderManagementsApiController extends Controller
     {
         abort_if(Gate::denies('order_management_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new OrderManagementResource($orderManagement->load(['merchant', 'payment_method', 'status', 'voucher']));
+        return new OrderManagementResource($orderManagement->load(['merchant', 'payment_method', 'status', 'voucher', 'order_type']));
     }
 
     public function update(UpdateOrderManagementRequest $request, OrderManagement $orderManagement)

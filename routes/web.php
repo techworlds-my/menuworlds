@@ -98,6 +98,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('add-on-managements/destroy', 'AddOnManagementsController@massDestroy')->name('add-on-managements.massDestroy');
     Route::resource('add-on-managements', 'AddOnManagementsController');
 
+    // Order Types
+    Route::delete('order-types/destroy', 'OrderTypeController@massDestroy')->name('order-types.massDestroy');
+    Route::resource('order-types', 'OrderTypeController');
+
+    // Testasds
+    Route::delete('testasds/destroy', 'TestasdController@massDestroy')->name('testasds.massDestroy');
+    Route::resource('testasds', 'TestasdController');
+
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');
     Route::get('messenger/create', 'MessengerController@createTopic')->name('messenger.createTopic');
     Route::post('messenger', 'MessengerController@storeTopic')->name('messenger.storeTopic');
@@ -208,6 +216,14 @@ Route::group(['as' => 'frontend.', 'namespace' => 'Frontend', 'middleware' => ['
     // Add On Managements
     Route::delete('add-on-managements/destroy', 'AddOnManagementsController@massDestroy')->name('add-on-managements.massDestroy');
     Route::resource('add-on-managements', 'AddOnManagementsController');
+
+    // Order Types
+    Route::delete('order-types/destroy', 'OrderTypeController@massDestroy')->name('order-types.massDestroy');
+    Route::resource('order-types', 'OrderTypeController');
+
+    // Testasds
+    Route::delete('testasds/destroy', 'TestasdController@massDestroy')->name('testasds.massDestroy');
+    Route::resource('testasds', 'TestasdController');
 
     Route::get('frontend/profile', 'ProfileController@index')->name('profile.index');
     Route::post('frontend/profile', 'ProfileController@update')->name('profile.update');

@@ -130,6 +130,14 @@
                                         {{ $orderManagement->voucher->voucher_code ?? '' }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.orderManagement.fields.order_type') }}
+                                    </th>
+                                    <td>
+                                        {{ $orderManagement->order_type->type ?? '' }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">
