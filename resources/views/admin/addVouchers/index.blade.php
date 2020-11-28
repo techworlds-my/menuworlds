@@ -59,12 +59,6 @@
                             {{ trans('cruds.addVoucher.fields.excluded_sales_item') }}
                         </th>
                         <th>
-                            {{ trans('cruds.addVoucher.fields.selected_category') }}
-                        </th>
-                        <th>
-                            {{ trans('cruds.addVoucher.fields.selected_sub_category') }}
-                        </th>
-                        <th>
                             {{ trans('cruds.addVoucher.fields.usage_limit') }}
                         </th>
                         <th>
@@ -72,6 +66,12 @@
                         </th>
                         <th>
                             {{ trans('cruds.addVoucher.fields.merchant') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.category') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.addVoucher.fields.sub_category') }}
                         </th>
                         <th>
                             &nbsp;
@@ -124,22 +124,6 @@
                         <td>
                         </td>
                         <td>
-                            <select class="search">
-                                <option value>{{ trans('global.all') }}</option>
-                                @foreach($item_catrgories as $key => $item)
-                                    <option value="{{ $item->title }}">{{ $item->title }}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
-                            <select class="search">
-                                <option value>{{ trans('global.all') }}</option>
-                                @foreach($item_sub_cateogries as $key => $item)
-                                    <option value="{{ $item->title }}">{{ $item->title }}</option>
-                                @endforeach
-                            </select>
-                        </td>
-                        <td>
                             <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
@@ -150,6 +134,22 @@
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($merchant_managements as $key => $item)
                                     <option value="{{ $item->company_name }}">{{ $item->company_name }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <select class="search">
+                                <option value>{{ trans('global.all') }}</option>
+                                @foreach($item_categories as $key => $item)
+                                    <option value="{{ $item->title }}">{{ $item->title }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                        <td>
+                            <select class="search">
+                                <option value>{{ trans('global.all') }}</option>
+                                @foreach($item_sub_categories as $key => $item)
+                                    <option value="{{ $item->title }}">{{ $item->title }}</option>
                                 @endforeach
                             </select>
                         </td>
@@ -205,16 +205,6 @@
                                 <input type="checkbox" disabled="disabled" {{ $addVoucher->excluded_sales_item ? 'checked' : '' }}>
                             </td>
                             <td>
-                                @foreach($addVoucher->selected_categories as $key => $item)
-                                    <span class="badge badge-info">{{ $item->title }}</span>
-                                @endforeach
-                            </td>
-                            <td>
-                                @foreach($addVoucher->selected_sub_categories as $key => $item)
-                                    <span class="badge badge-info">{{ $item->title }}</span>
-                                @endforeach
-                            </td>
-                            <td>
                                 {{ $addVoucher->usage_limit ?? '' }}
                             </td>
                             <td>
@@ -222,6 +212,16 @@
                             </td>
                             <td>
                                 {{ $addVoucher->merchant->company_name ?? '' }}
+                            </td>
+                            <td>
+                                @foreach($addVoucher->categories as $key => $item)
+                                    <span class="badge badge-info">{{ $item->title }}</span>
+                                @endforeach
+                            </td>
+                            <td>
+                                @foreach($addVoucher->sub_categories as $key => $item)
+                                    <span class="badge badge-info">{{ $item->title }}</span>
+                                @endforeach
                             </td>
                             <td>
                                 @can('add_voucher_show')

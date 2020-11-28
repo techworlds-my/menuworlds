@@ -91,18 +91,18 @@ class AddVoucher extends Model implements HasMedia
         return $this->belongsToMany(ItemManagement::class);
     }
 
-    public function selected_categories()
-    {
-        return $this->belongsToMany(ItemCatrgory::class);
-    }
-
-    public function selected_sub_categories()
-    {
-        return $this->belongsToMany(ItemSubCateogry::class);
-    }
-
     public function merchant()
     {
         return $this->belongsTo(MerchantManagement::class, 'merchant_id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(ItemCategory::class);
+    }
+
+    public function sub_categories()
+    {
+        return $this->belongsToMany(ItemSubCategory::class);
     }
 }

@@ -26,9 +26,6 @@
                                         {{ trans('cruds.orderItem.fields.id') }}
                                     </th>
                                     <th>
-                                        {{ trans('cruds.orderItem.fields.item') }}
-                                    </th>
-                                    <th>
                                         {{ trans('cruds.orderItem.fields.quantity') }}
                                     </th>
                                     <th>
@@ -44,6 +41,9 @@
                                         {{ trans('cruds.orderItem.fields.add_on_price') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.orderItem.fields.item') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -52,14 +52,6 @@
                                     </td>
                                     <td>
                                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
-                                    </td>
-                                    <td>
-                                        <select class="search">
-                                            <option value>{{ trans('global.all') }}</option>
-                                            @foreach($item_managements as $key => $item)
-                                                <option value="{{ $item->title }}">{{ $item->title }}</option>
-                                            @endforeach
-                                        </select>
                                     </td>
                                     <td>
                                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
@@ -82,6 +74,14 @@
                                         <input class="search" type="text" placeholder="{{ trans('global.search') }}">
                                     </td>
                                     <td>
+                                        <select class="search">
+                                            <option value>{{ trans('global.all') }}</option>
+                                            @foreach($item_managements as $key => $item)
+                                                <option value="{{ $item->title }}">{{ $item->title }}</option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td>
                                     </td>
                                 </tr>
                             </thead>
@@ -90,9 +90,6 @@
                                     <tr data-entry-id="{{ $orderItem->id }}">
                                         <td>
                                             {{ $orderItem->id ?? '' }}
-                                        </td>
-                                        <td>
-                                            {{ $orderItem->item->title ?? '' }}
                                         </td>
                                         <td>
                                             {{ $orderItem->quantity ?? '' }}
@@ -108,6 +105,9 @@
                                         </td>
                                         <td>
                                             {{ $orderItem->add_on_price ?? '' }}
+                                        </td>
+                                        <td>
+                                            {{ $orderItem->item->title ?? '' }}
                                         </td>
                                         <td>
                                             @can('order_item_show')

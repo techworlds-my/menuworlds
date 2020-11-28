@@ -28,14 +28,6 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.orderItem.fields.item') }}
-                                    </th>
-                                    <td>
-                                        {{ $orderItem->item->title ?? '' }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         {{ trans('cruds.orderItem.fields.quantity') }}
                                     </th>
                                     <td>
@@ -72,6 +64,14 @@
                                     </th>
                                     <td>
                                         {{ $orderItem->add_on_price }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.orderItem.fields.item') }}
+                                    </th>
+                                    <td>
+                                        {{ $orderItem->item->title ?? '' }}
                                     </td>
                                 </tr>
                             </tbody>

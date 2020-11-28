@@ -20,12 +20,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
     Route::post('merchant-managements/media', 'MerchantManagementApiController@storeMedia')->name('merchant-managements.storeMedia');
     Route::apiResource('merchant-managements', 'MerchantManagementApiController');
 
-    // Item Catrgories
-    Route::apiResource('item-catrgories', 'ItemCatrgoryApiController');
-
-    // Item Sub Cateogries
-    Route::apiResource('item-sub-cateogries', 'ItemSubCateogryApiController');
-
     // Item Managements
     Route::post('item-managements/media', 'ItemManagementApiController@storeMedia')->name('item-managements.storeMedia');
     Route::apiResource('item-managements', 'ItemManagementApiController');
@@ -81,4 +75,10 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
 
     // Voucher Categories
     Route::apiResource('voucher-categories', 'VoucherCategoryApiController');
+
+    // Item Sub Categories
+    Route::apiResource('item-sub-categories', 'ItemSubCategoryApiController');
+
+    // Item Categories
+    Route::apiResource('item-categories', 'ItemCategoryApiController');
 });

@@ -7,9 +7,10 @@ use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyItemManagementRequest;
 use App\Http\Requests\StoreItemManagementRequest;
 use App\Http\Requests\UpdateItemManagementRequest;
-use App\Models\ItemCatrgory;
+use App\Models\ItemCategory;
 use App\Models\ItemManagement;
-use App\Models\ItemSubCateogry;
+use App\Models\ItemSubCategory;
+use App\Models\MerchantManagement;
 use Gate;
 use Illuminate\Http\Request;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -23,24 +24,28 @@ class ItemManagementController extends Controller
     {
         abort_if(Gate::denies('item_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $itemManagements = ItemManagement::with(['sub_cateogry', 'categpry', 'media'])->get();
+        $itemManagements = ItemManagement::with(['sub_category', 'category', 'merchant', 'media'])->get();
 
-        $item_sub_cateogries = ItemSubCateogry::get();
+        $item_sub_categories = ItemSubCategory::get();
 
-        $item_catrgories = ItemCatrgory::get();
+        $item_categories = ItemCategory::get();
 
-        return view('admin.itemManagements.index', compact('itemManagements', 'item_sub_cateogries', 'item_catrgories'));
+        $merchant_managements = MerchantManagement::get();
+
+        return view('admin.itemManagements.index', compact('itemManagements', 'item_sub_categories', 'item_categories', 'merchant_managements'));
     }
 
     public function create()
     {
         abort_if(Gate::denies('item_management_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $sub_cateogries = ItemSubCateogry::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $sub_categories = ItemSubCategory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $categpries = ItemCatrgory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $categories = ItemCategory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.itemManagements.create', compact('sub_cateogries', 'categpries'));
+        $merchants = MerchantManagement::all()->pluck('company_name', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.itemManagements.create', compact('sub_categories', 'categories', 'merchants'));
     }
 
     public function store(StoreItemManagementRequest $request)
@@ -62,13 +67,15 @@ class ItemManagementController extends Controller
     {
         abort_if(Gate::denies('item_management_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $sub_cateogries = ItemSubCateogry::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $sub_categories = ItemSubCategory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $categpries = ItemCatrgory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $categories = ItemCategory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $itemManagement->load('sub_cateogry', 'categpry');
+        $merchants = MerchantManagement::all()->pluck('company_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.itemManagements.edit', compact('sub_cateogries', 'categpries', 'itemManagement'));
+        $itemManagement->load('sub_category', 'category', 'merchant');
+
+        return view('admin.itemManagements.edit', compact('sub_categories', 'categories', 'merchants', 'itemManagement'));
     }
 
     public function update(UpdateItemManagementRequest $request, ItemManagement $itemManagement)
@@ -98,7 +105,7 @@ class ItemManagementController extends Controller
     {
         abort_if(Gate::denies('item_management_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $itemManagement->load('sub_cateogry', 'categpry');
+        $itemManagement->load('sub_category', 'category', 'merchant');
 
         return view('admin.itemManagements.show', compact('itemManagement'));
     }

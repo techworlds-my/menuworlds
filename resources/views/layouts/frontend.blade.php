@@ -157,19 +157,19 @@
                                             {{ trans('cruds.item.title') }}
                                         </a>
                                     @endcan
-                                    @can('item_catrgory_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.item-catrgories.index') }}">
-                                            {{ trans('cruds.itemCatrgory.title') }}
-                                        </a>
-                                    @endcan
-                                    @can('item_sub_cateogry_access')
-                                        <a class="dropdown-item ml-3" href="{{ route('frontend.item-sub-cateogries.index') }}">
-                                            {{ trans('cruds.itemSubCateogry.title') }}
-                                        </a>
-                                    @endcan
                                     @can('item_management_access')
                                         <a class="dropdown-item ml-3" href="{{ route('frontend.item-managements.index') }}">
                                             {{ trans('cruds.itemManagement.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('item_sub_category_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.item-sub-categories.index') }}">
+                                            {{ trans('cruds.itemSubCategory.title') }}
+                                        </a>
+                                    @endcan
+                                    @can('item_category_access')
+                                        <a class="dropdown-item ml-3" href="{{ route('frontend.item-categories.index') }}">
+                                            {{ trans('cruds.itemCategory.title') }}
                                         </a>
                                     @endcan
                                     @can('order_access')

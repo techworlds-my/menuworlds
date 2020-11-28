@@ -184,7 +184,7 @@
             </li>
         @endcan
         @can('item_access')
-            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/item-catrgories*") ? "c-show" : "" }} {{ request()->is("admin/item-sub-cateogries*") ? "c-show" : "" }} {{ request()->is("admin/item-managements*") ? "c-show" : "" }}">
+            <li class="c-sidebar-nav-dropdown {{ request()->is("admin/item-managements*") ? "c-show" : "" }} {{ request()->is("admin/item-sub-categories*") ? "c-show" : "" }} {{ request()->is("admin/item-categories*") ? "c-show" : "" }}">
                 <a class="c-sidebar-nav-dropdown-toggle" href="#">
                     <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
 
@@ -192,26 +192,6 @@
                     {{ trans('cruds.item.title') }}
                 </a>
                 <ul class="c-sidebar-nav-dropdown-items">
-                    @can('item_catrgory_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.item-catrgories.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/item-catrgories") || request()->is("admin/item-catrgories/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.itemCatrgory.title') }}
-                            </a>
-                        </li>
-                    @endcan
-                    @can('item_sub_cateogry_access')
-                        <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.item-sub-cateogries.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/item-sub-cateogries") || request()->is("admin/item-sub-cateogries/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
-
-                                </i>
-                                {{ trans('cruds.itemSubCateogry.title') }}
-                            </a>
-                        </li>
-                    @endcan
                     @can('item_management_access')
                         <li class="c-sidebar-nav-item">
                             <a href="{{ route("admin.item-managements.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/item-managements") || request()->is("admin/item-managements/*") ? "c-active" : "" }}">
@@ -219,6 +199,26 @@
 
                                 </i>
                                 {{ trans('cruds.itemManagement.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('item_sub_category_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.item-sub-categories.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/item-sub-categories") || request()->is("admin/item-sub-categories/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.itemSubCategory.title') }}
+                            </a>
+                        </li>
+                    @endcan
+                    @can('item_category_access')
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.item-categories.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/item-categories") || request()->is("admin/item-categories/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.itemCategory.title') }}
                             </a>
                         </li>
                     @endcan

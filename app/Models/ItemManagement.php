@@ -37,8 +37,9 @@ class ItemManagement extends Model implements HasMedia
         'is_active',
         'is_veg',
         'is_halal',
-        'sub_cateogry_id',
-        'categpry_id',
+        'sub_category_id',
+        'category_id',
+        'merchant_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -83,13 +84,18 @@ class ItemManagement extends Model implements HasMedia
         return $files;
     }
 
-    public function sub_cateogry()
+    public function sub_category()
     {
-        return $this->belongsTo(ItemSubCateogry::class, 'sub_cateogry_id');
+        return $this->belongsTo(ItemSubCategory::class, 'sub_category_id');
     }
 
-    public function categpry()
+    public function category()
     {
-        return $this->belongsTo(ItemCatrgory::class, 'categpry_id');
+        return $this->belongsTo(ItemCategory::class, 'category_id');
+    }
+
+    public function merchant()
+    {
+        return $this->belongsTo(MerchantManagement::class, 'merchant_id');
     }
 }

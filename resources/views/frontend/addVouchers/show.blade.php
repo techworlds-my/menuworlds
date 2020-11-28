@@ -126,26 +126,6 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        {{ trans('cruds.addVoucher.fields.selected_category') }}
-                                    </th>
-                                    <td>
-                                        @foreach($addVoucher->selected_categories as $key => $selected_category)
-                                            <span class="label label-info">{{ $selected_category->title }}</span>
-                                        @endforeach
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        {{ trans('cruds.addVoucher.fields.selected_sub_category') }}
-                                    </th>
-                                    <td>
-                                        @foreach($addVoucher->selected_sub_categories as $key => $selected_sub_category)
-                                            <span class="label label-info">{{ $selected_sub_category->title }}</span>
-                                        @endforeach
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>
                                         {{ trans('cruds.addVoucher.fields.usage_limit') }}
                                     </th>
                                     <td>
@@ -166,6 +146,26 @@
                                     </th>
                                     <td>
                                         {{ $addVoucher->merchant->company_name ?? '' }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.addVoucher.fields.category') }}
+                                    </th>
+                                    <td>
+                                        @foreach($addVoucher->categories as $key => $category)
+                                            <span class="label label-info">{{ $category->title }}</span>
+                                        @endforeach
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.addVoucher.fields.sub_category') }}
+                                    </th>
+                                    <td>
+                                        @foreach($addVoucher->sub_categories as $key => $sub_category)
+                                            <span class="label label-info">{{ $sub_category->title }}</span>
+                                        @endforeach
                                     </td>
                                 </tr>
                             </tbody>
