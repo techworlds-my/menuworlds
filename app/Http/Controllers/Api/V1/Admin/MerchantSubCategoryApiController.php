@@ -26,10 +26,14 @@ class MerchantSubCategoryApiController extends Controller
     public function store(StoreMerchantSubCategoryRequest $request)
     {
         $merchantSubCategory = MerchantSubCategory::create($request->all());
+    
+        $file = $request->file('image');
+        $imageCount = count($request->file('image'));
+        
 
-        if ($request->input('image', false)) {
-            $merchantSubCategory->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
-        }
+         for($i = 0;$i<$imageCount;$i++){
+              $merchantSubCategory->addMedia($file[$i])->toMediaCollection('image');
+         }
 
         return (new MerchantSubCategoryResource($merchantSubCategory))
             ->response()

@@ -26,10 +26,13 @@ class ItemCategoryApiController extends Controller
     public function store(StoreItemCategoryRequest $request)
     {
         $itemCategory = ItemCategory::create($request->all());
+        $file = $request->file('image');
+        $imageCount = count($request->file('image'));
+        
 
-        if ($request->input('image', false)) {
-            $itemCategory->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
-        }
+         for($i = 0;$i<$imageCount;$i++){
+              $itemCategory->addMedia($file[$i])->toMediaCollection('image');
+         }
 
         return (new ItemCategoryResource($itemCategory))
             ->response()
