@@ -87,9 +87,6 @@ class ItemCategoryApiController extends Controller
 
          $itemCategories = new ItemCategoryResource(ItemCategory::with(['merchant'])->get()->where('merchant_id',$id));
          
-            
-          
-
             for($i=0;$i<$itemCategories->count();$i++){
                 $category_id = $itemCategories[$i]['id'];
 
@@ -107,20 +104,6 @@ class ItemCategoryApiController extends Controller
       
     }
 
-    // public function filter_by_merchant_id_by_merchant(int $id)
-    // {   
-    //     abort_if(Gate::denies('item_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-    //      $itemCategories = new ItemCategoryResource(ItemCategory::with(['merchant'])->get()->where('merchant_id',$id));
-
-    //     foreach($itemCategories as $itemCategory){
-    //        $item = count(new ItemManagement(ItemManagement::get()->where('category_id',$itemCategory['id'])));
-
-    //        return 0;
-    //      }
-    //     $itemCategories[0]['role'] = 'Admin';
-    //     //return $itemCategories;
-      
-    // }
+    
 
 }
