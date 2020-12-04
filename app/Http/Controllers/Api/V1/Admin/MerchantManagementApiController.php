@@ -27,13 +27,20 @@ class MerchantManagementApiController extends Controller
     {
         $merchantManagement = MerchantManagement::create($request->all());
 
-        if ($request->input('profile_photo', false)) {
-            $merchantManagement->addMedia(storage_path('tmp/uploads/' . $request->input('profile_photo')))->toMediaCollection('profile_photo');
-        }
+        
+        $file = $request->file('profile_photo');
+        $banner = $request->file('banner');
+        $bannerCount = count($request->file('banner'));
+        $imageCount = count($request->file('profile_photo'));
+        
 
-        if ($request->input('banner', false)) {
-            $merchantManagement->addMedia(storage_path('tmp/uploads/' . $request->input('banner')))->toMediaCollection('banner');
-        }
+         for($i = 0;$i<$imageCount;$i++){
+              $merchantManagement->addMedia($file[$i])->toMediaCollection('profile_photo');
+         }
+ 
+         for($j = 0;$j<$bannerCount;$j++){
+            $merchantManagement->addMedia($banner[$j])->toMediaCollection('banner');
+       }
 
         return (new MerchantManagementResource($merchantManagement))
             ->response()
