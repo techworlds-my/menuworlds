@@ -22,7 +22,7 @@ class MerchantSubCategoryController extends Controller
     {
         abort_if(Gate::denies('merchant_sub_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $merchantSubCategories = MerchantSubCategory::with(['category', 'parent', 'media'])->get();
+        $merchantSubCategories = MerchantSubCategory::with(['category', 'media'])->get();
 
         return view('frontend.merchantSubCategories.index', compact('merchantSubCategories'));
     }
@@ -33,9 +33,7 @@ class MerchantSubCategoryController extends Controller
 
         $categories = MerchantCategory::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $parents = MerchantSubCategory::all()->pluck('sub_category', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('frontend.merchantSubCategories.create', compact('categories', 'parents'));
+        return view('frontend.merchantSubCategories.create', compact('categories'));
     }
 
     public function store(StoreMerchantSubCategoryRequest $request)
@@ -59,11 +57,9 @@ class MerchantSubCategoryController extends Controller
 
         $categories = MerchantCategory::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $parents = MerchantSubCategory::all()->pluck('sub_category', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $merchantSubCategory->load('category');
 
-        $merchantSubCategory->load('category', 'parent');
-
-        return view('frontend.merchantSubCategories.edit', compact('categories', 'parents', 'merchantSubCategory'));
+        return view('frontend.merchantSubCategories.edit', compact('categories', 'merchantSubCategory'));
     }
 
     public function update(UpdateMerchantSubCategoryRequest $request, MerchantSubCategory $merchantSubCategory)
@@ -89,7 +85,7 @@ class MerchantSubCategoryController extends Controller
     {
         abort_if(Gate::denies('merchant_sub_category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $merchantSubCategory->load('category', 'parent');
+        $merchantSubCategory->load('category');
 
         return view('frontend.merchantSubCategories.show', compact('merchantSubCategory'));
     }

@@ -64,7 +64,7 @@
                             {{ trans('cruds.merchantSubCategory.fields.parent') }}
                         </th>
                         <td>
-                            {{ $merchantSubCategory->parent->sub_category ?? '' }}
+                            {{ $merchantSubCategory->parent }}
                         </td>
                     </tr>
                 </tbody>

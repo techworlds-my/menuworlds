@@ -104,7 +104,7 @@
 { data: 'category_name', name: 'category.name' },
 { data: 'category.is_enable', name: 'category.is_enable' },
 { data: 'image', name: 'image', sortable: false, searchable: false },
-{ data: 'parent_sub_category', name: 'parent.sub_category' },
+{ data: 'parent', name: 'parent' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

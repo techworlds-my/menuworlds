@@ -20,22 +20,16 @@ class MerchantSubCategoryApiController extends Controller
     {
         abort_if(Gate::denies('merchant_sub_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new MerchantSubCategoryResource(MerchantSubCategory::with(['category', 'parent'])->get());
+        return new MerchantSubCategoryResource(MerchantSubCategory::with(['category'])->get());
     }
 
     public function store(StoreMerchantSubCategoryRequest $request)
     {
         $merchantSubCategory = MerchantSubCategory::create($request->all());
 
-    
-        $file = $request->file('image');
-        $imageCount = count($request->file('image'));
-        
-
-         for($i = 0;$i<$imageCount;$i++){
-              $merchantSubCategory->addMedia($file[$i])->toMediaCollection('image');
-         }
-
+        if ($request->input('image', false)) {
+            $merchantSubCategory->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
+        }
 
         return (new MerchantSubCategoryResource($merchantSubCategory))
             ->response()
@@ -46,7 +40,7 @@ class MerchantSubCategoryApiController extends Controller
     {
         abort_if(Gate::denies('merchant_sub_category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new MerchantSubCategoryResource($merchantSubCategory->load(['category', 'parent']));
+        return new MerchantSubCategoryResource($merchantSubCategory->load(['category']));
     }
 
     public function update(UpdateMerchantSubCategoryRequest $request, MerchantSubCategory $merchantSubCategory)
@@ -78,13 +72,4 @@ class MerchantSubCategoryApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
-
-
-    public function filter_by_category($id)
-    {
-        abort_if(Gate::denies('merchant_sub_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return new MerchantSubCategoryResource(MerchantSubCategory::with(['category'])->get()->where('category_id',$id));
-    }
-
 }

@@ -62,12 +62,8 @@
                             <span class="help-block">{{ trans('cruds.merchantSubCategory.fields.image_helper') }}</span>
                         </div>
                         <div class="form-group">
-                            <label for="parent_id">{{ trans('cruds.merchantSubCategory.fields.parent') }}</label>
-                            <select class="form-control select2" name="parent_id" id="parent_id">
-                                @foreach($parents as $id => $parent)
-                                    <option value="{{ $id }}" {{ (old('parent_id') ? old('parent_id') : $merchantSubCategory->parent->id ?? '') == $id ? 'selected' : '' }}>{{ $parent }}</option>
-                                @endforeach
-                            </select>
+                            <label for="parent">{{ trans('cruds.merchantSubCategory.fields.parent') }}</label>
+                            <input class="form-control" type="text" name="parent" id="parent" value="{{ old('parent', $merchantSubCategory->parent) }}">
                             @if($errors->has('parent'))
                                 <div class="invalid-feedback">
                                     {{ $errors->first('parent') }}

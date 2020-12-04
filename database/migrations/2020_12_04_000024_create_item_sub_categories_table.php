@@ -12,6 +12,7 @@ class CreateItemSubCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->boolean('is_enable')->default(0)->nullable();
+            $table->string('parent')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

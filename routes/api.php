@@ -1,42 +1,6 @@
 <?php
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:api']], function () {
-
-     //merchant-managements
-     Route::get('merchant-managements/filter/merchant/{merchant_id}','MerchantManagementApiController@filter_by_id');
-
-   
-     Route::get('merchant-managements/filter/sub/{sub_category}',
-     'MerchantManagementApiController@filter_by_sub_category');
-     
-      //merchant-sub-categories
-      Route::get('merchant-sub-categories/filter/category/{category}',
-     'MerchantManagementApiController@filter_by_category');
- 
-     //item-managements
-     Route::get('item-managements/filter/merchant/{merchant_id}','ItemManagementApiController@filter_by_merchant_id');
- 
-     Route::get('item-managements/filter/category/{category}','ItemManagementApiController@filter_by_category');
-     
-     Route::get('item-managements/filter/sub/{category}','ItemManagementApiController@filter_by_sub_category');
- 
-     Route::get('item-managements/filter/merchant/{merchant}/category/{category}','ItemManagementApiController@filter_by_merchant_id_category');
- 
-      Route::get('item-managements/filter/merchant/{merchant}/sub/{category}','ItemManagementApiController@filter_by_merchant_id_sub_category');
-     
-     Route::get('item-managements/filter/item/{id}','ItemManagementApiController@filter_by_item_id');
- 
-     //order-managements
-     Route::get('order-managements/filter/merchant/{merchant}','OrderManagementApiController@filter_by_merchant_id');
- 
-     Route::get('order-managements/filter/merchant/{merchant}/status/{status}','OrderManagementApiControll   er@filter_by_merchant_id_status');
- 
-     Route::get('order-managements/filter/username/{username}','OrderManagementApiController@filter_by_username');
- 
-     //item-category
-      Route::get('item-categories/filter/merchant/{id}','ItemCategoryApiController@filter_by_merchant_id');
-     
-      
     // Permissions
     Route::apiResource('permissions', 'PermissionsApiController');
 
