@@ -23,7 +23,11 @@ class ItemSubCategoryController extends Controller
     {
         abort_if(Gate::denies('item_sub_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+<<<<<<< HEAD
         $itemSubCategories = ItemSubCategory::with(['category', 'merchant', 'media'])->get();
+=======
+        $itemSubCategories = ItemSubCategory::with(['category', 'merchant', 'parent', 'media'])->get();
+>>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
 
         return view('admin.itemSubCategories.index', compact('itemSubCategories'));
     }
@@ -36,7 +40,13 @@ class ItemSubCategoryController extends Controller
 
         $merchants = MerchantManagement::all()->pluck('company_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
+<<<<<<< HEAD
         return view('admin.itemSubCategories.create', compact('categories', 'merchants'));
+=======
+        $parents = ItemSubCategory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        return view('admin.itemSubCategories.create', compact('categories', 'merchants', 'parents'));
+>>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
     }
 
     public function store(StoreItemSubCategoryRequest $request)
@@ -62,9 +72,17 @@ class ItemSubCategoryController extends Controller
 
         $merchants = MerchantManagement::all()->pluck('company_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
+<<<<<<< HEAD
         $itemSubCategory->load('category', 'merchant');
 
         return view('admin.itemSubCategories.edit', compact('categories', 'merchants', 'itemSubCategory'));
+=======
+        $parents = ItemSubCategory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
+
+        $itemSubCategory->load('category', 'merchant', 'parent');
+
+        return view('admin.itemSubCategories.edit', compact('categories', 'merchants', 'parents', 'itemSubCategory'));
+>>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
     }
 
     public function update(UpdateItemSubCategoryRequest $request, ItemSubCategory $itemSubCategory)
@@ -90,7 +108,11 @@ class ItemSubCategoryController extends Controller
     {
         abort_if(Gate::denies('item_sub_category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
+<<<<<<< HEAD
         $itemSubCategory->load('category', 'merchant');
+=======
+        $itemSubCategory->load('category', 'merchant', 'parent');
+>>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
 
         return view('admin.itemSubCategories.show', compact('itemSubCategory'));
     }

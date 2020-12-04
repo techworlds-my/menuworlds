@@ -76,6 +76,23 @@
                             <span class="help-block">{{ trans('cruds.itemSubCategory.fields.image_helper') }}</span>
                         </div>
                         <div class="form-group">
+<<<<<<< HEAD
+=======
+                            <label for="parent_id">{{ trans('cruds.itemSubCategory.fields.parent') }}</label>
+                            <select class="form-control select2" name="parent_id" id="parent_id">
+                                @foreach($parents as $id => $parent)
+                                    <option value="{{ $id }}" {{ old('parent_id') == $id ? 'selected' : '' }}>{{ $parent }}</option>
+                                @endforeach
+                            </select>
+                            @if($errors->has('parent'))
+                                <div class="invalid-feedback">
+                                    {{ $errors->first('parent') }}
+                                </div>
+                            @endif
+                            <span class="help-block">{{ trans('cruds.itemSubCategory.fields.parent_helper') }}</span>
+                        </div>
+                        <div class="form-group">
+>>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
                             <button class="btn btn-danger" type="submit">
                                 {{ trans('global.save') }}
                             </button>

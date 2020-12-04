@@ -1,6 +1,10 @@
 <?php
 
+<<<<<<< HEAD
 Route::view('/', 'welcome');
+=======
+Route::redirect('/', '/login');
+>>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
 Auth::routes(['register' => false]);
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth', '2fa', 'admin']], function () {

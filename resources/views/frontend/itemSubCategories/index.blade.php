@@ -41,6 +41,12 @@
                                         {{ trans('cruds.itemSubCategory.fields.image') }}
                                     </th>
                                     <th>
+<<<<<<< HEAD
+=======
+                                        {{ trans('cruds.itemSubCategory.fields.parent') }}
+                                    </th>
+                                    <th>
+>>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -72,6 +78,12 @@
                                             @endif
                                         </td>
                                         <td>
+<<<<<<< HEAD
+=======
+                                            {{ $itemSubCategory->parent->title ?? '' }}
+                                        </td>
+                                        <td>
+>>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
                                             @can('item_sub_category_show')
                                                 <a class="btn btn-xs btn-primary" href="{{ route('frontend.item-sub-categories.show', $itemSubCategory->id) }}">
                                                     {{ trans('global.view') }}

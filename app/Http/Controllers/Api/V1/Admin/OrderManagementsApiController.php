@@ -53,4 +53,29 @@ class OrderManagementsApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+<<<<<<< HEAD
+=======
+
+        
+    public function filter_by_merchant_id(int $id)
+    {
+        abort_if(Gate::denies('order_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return new OrderManagementResource(OrderManagement::with(['merchant', 'payment_method', 'status', 'voucher', 'order_type'])->get()->where('merchant_id',$id));
+    }
+    
+     public function filter_by_merchant_id_status(int $id,$status)
+    {
+        abort_if(Gate::denies('order_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return new OrderManagementResource(OrderManagement::with(['merchant', 'payment_method', 'status', 'voucher', 'order_type'])->get()->where('merchant_id',$id)>where('status_id',$status));
+    }
+    
+        public function filter_by_username($username)
+        {
+            abort_if(Gate::denies('order_management_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+            
+            return new OrderManagementResource(OrderManagement::with(['status', 'paymentmethod'])->get()->where('username',$username));
+        }
+>>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
 }

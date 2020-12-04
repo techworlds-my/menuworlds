@@ -27,9 +27,13 @@ class MerchantCategoryApiController extends Controller
     {
         $merchantCategory = MerchantCategory::create($request->all());
 
-        if ($request->input('image', false)) {
-            $merchantCategory->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
-        }
+        $file = $request->file('image');
+        $imageCount = count($request->file('image'));
+        
+
+         for($i = 0;$i<$imageCount;$i++){
+              $merchantCategory->addMedia($file[$i])->toMediaCollection('image');
+         }
 
         return (new MerchantCategoryResource($merchantCategory))
             ->response()

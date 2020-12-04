@@ -27,9 +27,14 @@ class ItemCategoryApiController extends Controller
     {
         $itemCategory = ItemCategory::create($request->all());
 
-        if ($request->input('image', false)) {
-            $itemCategory->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
-        }
+        $file = $request->file('image');
+        $imageCount = count($request->file('image'));
+        
+
+         for($i = 0;$i<$imageCount;$i++){
+              $itemCategory->addMedia($file[$i])->toMediaCollection('image');
+         }
+
 
         return (new ItemCategoryResource($itemCategory))
             ->response()
@@ -72,4 +77,13 @@ class ItemCategoryApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+        
+    public function filter_by_merchant_id(int $id)
+    {
+        abort_if(Gate::denies('item_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return new ItemCategoryResource(ItemCategory::with(['merchant'])->get()>where('merchant_id',$id));
+    }
+
 }

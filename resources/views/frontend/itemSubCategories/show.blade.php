@@ -70,6 +70,17 @@
                                         @endif
                                     </td>
                                 </tr>
+<<<<<<< HEAD
+=======
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.itemSubCategory.fields.parent') }}
+                                    </th>
+                                    <td>
+                                        {{ $itemSubCategory->parent->title ?? '' }}
+                                    </td>
+                                </tr>
+>>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
                             </tbody>
                         </table>
                         <div class="form-group">
