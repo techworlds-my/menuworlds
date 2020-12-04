@@ -23,7 +23,7 @@ class ItemSubCategoryController extends Controller
     {
         abort_if(Gate::denies('item_sub_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $itemSubCategories = ItemSubCategory::with(['category', 'merchant', 'parent', 'media'])->get();
+        $itemSubCategories = ItemSubCategory::with(['category', 'merchant', 'media'])->get();
 
         return view('admin.itemSubCategories.index', compact('itemSubCategories'));
     }
@@ -36,9 +36,7 @@ class ItemSubCategoryController extends Controller
 
         $merchants = MerchantManagement::all()->pluck('company_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $parents = ItemSubCategory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.itemSubCategories.create', compact('categories', 'merchants', 'parents'));
+        return view('admin.itemSubCategories.create', compact('categories', 'merchants'));
     }
 
     public function store(StoreItemSubCategoryRequest $request)
@@ -64,11 +62,10 @@ class ItemSubCategoryController extends Controller
 
         $merchants = MerchantManagement::all()->pluck('company_name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $parents = ItemSubCategory::all()->pluck('title', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $itemSubCategory->load('category', 'merchant', 'parent');
+        $itemSubCategory->load('category', 'merchant');
 
-        return view('admin.itemSubCategories.edit', compact('categories', 'merchants', 'parents', 'itemSubCategory'));
+        return view('admin.itemSubCategories.edit', compact('categories', 'merchants', 'itemSubCategory'));
     }
 
     public function update(UpdateItemSubCategoryRequest $request, ItemSubCategory $itemSubCategory)
@@ -94,7 +91,7 @@ class ItemSubCategoryController extends Controller
     {
         abort_if(Gate::denies('item_sub_category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $itemSubCategory->load('category', 'merchant', 'parent');
+        $itemSubCategory->load('category', 'merchant');
 
         return view('admin.itemSubCategories.show', compact('itemSubCategory'));
     }

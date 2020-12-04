@@ -11,6 +11,10 @@ use App\Models\ItemCategory;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Admin\ItemSubCategoryResource;
+use App\Models\ItemSubCategory;
+use App\Http\Resources\Admin\ItemManagementResource;
+use App\Models\ItemManagement;
 
 class ItemCategoryApiController extends Controller
 {
@@ -81,12 +85,42 @@ class ItemCategoryApiController extends Controller
     {   
         abort_if(Gate::denies('item_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-         $items = new ItemCategoryResource(ItemCategory::with(['merchant'])->get()->where('merchant_id',$id));
-        // $myArr = [1, 2, 3, 4];
-        // array_push($myArr, 5, 8);
-        $items->is_someting = 'gg';
-        return $items;
-      // return json_encode($myArr);
+         $itemCategories = new ItemCategoryResource(ItemCategory::with(['merchant'])->get()->where('merchant_id',$id));
+         
+            
+          
+
+            for($i=0;$i<$itemCategories->count();$i++){
+                $category_id = $itemCategories[$i]['id'];
+
+                $item = new ItemManagementResource(ItemManagement::get()->where('category_id',$category_id));
+
+                $sub = new ItemSubCategoryResource(ItemSubCategory::get()->where('category_id',$category_id));
+                if($sub->isNotEmpty() || $item->isNotEmpty()){
+                    $itemCategories[$i]['is_something'] = true;
+                }else{
+                    $itemCategories[$i]['is_something'] = false;
+                }
+                
+            }
+        return $itemCategories;
+      
     }
+
+    // public function filter_by_merchant_id_by_merchant(int $id)
+    // {   
+    //     abort_if(Gate::denies('item_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+    //      $itemCategories = new ItemCategoryResource(ItemCategory::with(['merchant'])->get()->where('merchant_id',$id));
+
+    //     foreach($itemCategories as $itemCategory){
+    //        $item = count(new ItemManagement(ItemManagement::get()->where('category_id',$itemCategory['id'])));
+
+    //        return 0;
+    //      }
+    //     $itemCategories[0]['role'] = 'Admin';
+    //     //return $itemCategories;
+      
+    // }
 
 }
