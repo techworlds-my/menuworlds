@@ -38,6 +38,12 @@
                             {{ trans('cruds.itemSubCategory.fields.merchant') }}
                         </th>
                         <th>
+                            {{ trans('cruds.itemSubCategory.fields.image') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.itemSubCategory.fields.parent') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -63,6 +69,16 @@
                             </td>
                             <td>
                                 {{ $itemSubCategory->merchant->company_name ?? '' }}
+                            </td>
+                            <td>
+                                @if($itemSubCategory->image)
+                                    <a href="{{ $itemSubCategory->image->getUrl() }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ $itemSubCategory->image->getUrl('thumb') }}">
+                                    </a>
+                                @endif
+                            </td>
+                            <td>
+                                {{ $itemSubCategory->parent->title ?? '' }}
                             </td>
                             <td>
                                 @can('item_sub_category_show')

@@ -31,6 +31,9 @@
                         {{ trans('cruds.merchantCategory.fields.is_enable') }}
                     </th>
                     <th>
+                        {{ trans('cruds.merchantCategory.fields.image') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -89,6 +92,7 @@
 { data: 'id', name: 'id' },
 { data: 'name', name: 'name' },
 { data: 'is_enable', name: 'is_enable' },
+{ data: 'image', name: 'image', sortable: false, searchable: false },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

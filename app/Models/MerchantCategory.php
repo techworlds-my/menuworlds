@@ -6,11 +6,18 @@ use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use \DateTimeInterface;
 
-class MerchantCategory extends Model
+class MerchantCategory extends Model implements HasMedia
 {
-    use SoftDeletes, Auditable, HasFactory;
+    use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
+
+    protected $appends = [
+        'image',
+    ];
 
     public $table = 'merchant_categories';
 
@@ -33,6 +40,12 @@ class MerchantCategory extends Model
         return $date->format('Y-m-d H:i:s');
     }
 
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
+        $this->addMediaConversion('preview')->fit('crop', 120, 120);
+    }
+
     public function generateTwoFactorCode()
     {
         $this->timestamps            = false;
@@ -47,5 +60,18 @@ class MerchantCategory extends Model
         $this->two_factor_code       = null;
         $this->two_factor_expires_at = null;
         $this->save();
+    }
+
+    public function getImageAttribute()
+    {
+        $file = $this->getMedia('image')->last();
+
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
     }
 }

@@ -39,6 +39,18 @@
                             <input type="checkbox" disabled="disabled" {{ $merchantCategory->is_enable ? 'checked' : '' }}>
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.merchantCategory.fields.image') }}
+                        </th>
+                        <td>
+                            @if($merchantCategory->image)
+                                <a href="{{ $merchantCategory->image->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $merchantCategory->image->getUrl('thumb') }}">
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

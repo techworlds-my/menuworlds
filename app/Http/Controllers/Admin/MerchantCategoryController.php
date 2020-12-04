@@ -3,17 +3,21 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\MassDestroyMerchantCategoryRequest;
 use App\Http\Requests\StoreMerchantCategoryRequest;
 use App\Http\Requests\UpdateMerchantCategoryRequest;
 use App\Models\MerchantCategory;
 use Gate;
 use Illuminate\Http\Request;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
 class MerchantCategoryController extends Controller
 {
+    use MediaUploadingTrait;
+
     public function index(Request $request)
     {
         abort_if(Gate::denies('merchant_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -49,8 +53,19 @@ class MerchantCategoryController extends Controller
             $table->editColumn('is_enable', function ($row) {
                 return '<input type="checkbox" disabled ' . ($row->is_enable ? 'checked' : null) . '>';
             });
+            $table->editColumn('image', function ($row) {
+                if ($photo = $row->image) {
+                    return sprintf(
+                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
+                        $photo->url,
+                        $photo->thumbnail
+                    );
+                }
 
-            $table->rawColumns(['actions', 'placeholder', 'is_enable']);
+                return '';
+            });
+
+            $table->rawColumns(['actions', 'placeholder', 'is_enable', 'image']);
 
             return $table->make(true);
         }
@@ -69,6 +84,14 @@ class MerchantCategoryController extends Controller
     {
         $merchantCategory = MerchantCategory::create($request->all());
 
+        if ($request->input('image', false)) {
+            $merchantCategory->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
+        }
+
+        if ($media = $request->input('ck-media', false)) {
+            Media::whereIn('id', $media)->update(['model_id' => $merchantCategory->id]);
+        }
+
         return redirect()->route('admin.merchant-categories.index');
     }
 
@@ -82,6 +105,18 @@ class MerchantCategoryController extends Controller
     public function update(UpdateMerchantCategoryRequest $request, MerchantCategory $merchantCategory)
     {
         $merchantCategory->update($request->all());
+
+        if ($request->input('image', false)) {
+            if (!$merchantCategory->image || $request->input('image') !== $merchantCategory->image->file_name) {
+                if ($merchantCategory->image) {
+                    $merchantCategory->image->delete();
+                }
+
+                $merchantCategory->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
+            }
+        } elseif ($merchantCategory->image) {
+            $merchantCategory->image->delete();
+        }
 
         return redirect()->route('admin.merchant-categories.index');
     }
@@ -107,5 +142,17 @@ class MerchantCategoryController extends Controller
         MerchantCategory::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function storeCKEditorImages(Request $request)
+    {
+        abort_if(Gate::denies('merchant_category_create') && Gate::denies('merchant_category_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $model         = new MerchantCategory();
+        $model->id     = $request->input('crud_id', 0);
+        $model->exists = true;
+        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+
+        return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
 }

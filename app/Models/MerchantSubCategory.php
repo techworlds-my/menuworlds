@@ -6,11 +6,18 @@ use App\Traits\Auditable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use \DateTimeInterface;
 
-class MerchantSubCategory extends Model
+class MerchantSubCategory extends Model implements HasMedia
 {
-    use SoftDeletes, Auditable, HasFactory;
+    use SoftDeletes, InteractsWithMedia, Auditable, HasFactory;
+
+    protected $appends = [
+        'image',
+    ];
 
     public $table = 'merchant_sub_categories';
 
@@ -24,6 +31,7 @@ class MerchantSubCategory extends Model
         'sub_category',
         'in_enable',
         'category_id',
+        'parent_id',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -32,6 +40,12 @@ class MerchantSubCategory extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')->fit('crop', 50, 50);
+        $this->addMediaConversion('preview')->fit('crop', 120, 120);
     }
 
     public function generateTwoFactorCode()
@@ -53,5 +67,23 @@ class MerchantSubCategory extends Model
     public function category()
     {
         return $this->belongsTo(MerchantCategory::class, 'category_id');
+    }
+
+    public function getImageAttribute()
+    {
+        $file = $this->getMedia('image')->last();
+
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(MerchantSubCategory::class, 'parent_id');
     }
 }

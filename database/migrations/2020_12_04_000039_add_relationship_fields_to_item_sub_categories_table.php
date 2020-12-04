@@ -13,6 +13,8 @@ class AddRelationshipFieldsToItemSubCategoriesTable extends Migration
             $table->foreign('category_id', 'category_fk_2678794')->references('id')->on('item_categories');
             $table->unsignedBigInteger('merchant_id')->nullable();
             $table->foreign('merchant_id', 'merchant_fk_2680015')->references('id')->on('merchant_managements');
+            $table->unsignedBigInteger('parent_id')->nullable();
+            $table->foreign('parent_id', 'parent_fk_2719128')->references('id')->on('item_sub_categories');
         });
     }
 }
