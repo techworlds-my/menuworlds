@@ -31,10 +31,7 @@ class ItemSubCategory extends Model implements HasMedia
         'is_enable',
         'category_id',
         'merchant_id',
-<<<<<<< HEAD
-=======
         'parent_id',
->>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
         'created_at',
         'updated_at',
         'deleted_at',
@@ -89,12 +86,9 @@ class ItemSubCategory extends Model implements HasMedia
 
         return $file;
     }
-<<<<<<< HEAD
-=======
 
     public function parent()
     {
         return $this->belongsTo(ItemSubCategory::class, 'parent_id');
     }
->>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
 }

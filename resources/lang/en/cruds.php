@@ -721,11 +721,8 @@ return [
             'merchant_helper'   => ' ',
             'image'             => 'Image',
             'image_helper'      => ' ',
-<<<<<<< HEAD
-=======
             'parent'            => 'Parent',
             'parent_helper'     => ' ',
->>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
         ],
     ],
     'itemCategory'        => [

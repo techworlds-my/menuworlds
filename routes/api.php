@@ -1,8 +1,6 @@
 <?php
 
 Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', 'middleware' => ['auth:api']], function () {
-<<<<<<< HEAD
-=======
 
      //merchant-managements
      Route::get('merchant-managements/filter/merchant/{merchant_id}','MerchantManagementApiController@filter_by_id');
@@ -39,7 +37,6 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
       Route::get('item-categories/filter/merchant/{id}','ItemCategoryApiController@filter_by_merchant_id');
      
       
->>>>>>> 2c4a47a5c3e5d5ea4cf11bf66ce3c586c4dbcc8f
     // Permissions
     Route::apiResource('permissions', 'PermissionsApiController');
 
