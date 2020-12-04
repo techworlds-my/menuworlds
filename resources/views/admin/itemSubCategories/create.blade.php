@@ -73,7 +73,7 @@
             </div>
             <div class="form-group">
                 <label class="required" for="parent">{{ trans('cruds.itemSubCategory.fields.parent') }}</label>
-                <input class="form-control {{ $errors->has('parent') ? 'is-invalid' : '' }}" type="text" name="parent" id="parent" value="{{ old('parent', $itemSubCategory->parent) }}" required>
+                <input class="form-control {{ $errors->has('parent') ? 'is-invalid' : '' }}" type="text" name="parent" id="parent" value="{{ old('parent', ) }}" required>
                 @if($errors->has('parent'))
                     <div class="invalid-feedback">
                         {{ $errors->first('parent') }}

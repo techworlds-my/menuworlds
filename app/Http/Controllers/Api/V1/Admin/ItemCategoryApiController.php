@@ -97,13 +97,12 @@ class ItemCategoryApiController extends Controller
                     $itemCategories[$i]['is_something'] = true;
                 }else{
                     $itemCategories[$i]['is_something'] = false;
-                }
-                
+                }  
             }
         return $itemCategories;
       
     }
 
-    
+
 
 }

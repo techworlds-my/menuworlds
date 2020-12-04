@@ -77,4 +77,35 @@ class ItemSubCategoryApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    public function filter_by_category_or_sub(int $id)
+    {   
+        abort_if(Gate::denies('item_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $itemSubCategories = new ItemSubCategoryResource(ItemSubCategory::with(['category', 'merchant'])->get()->where('parent',$id));
+
+        if($itemSubCategories->isNotEmpty()){
+
+        }
+        else{
+            $itemSubCategories = new ItemSubCategoryResource(ItemSubCategory::with(['category', 'merchant'])->get()->where('category_id',$id));
+
+            for($i=0;$i<$itemSubCategories->count();$i++){
+                $subcategory_id = $itemSubCategories[$i]['id'];
+
+                $item = new ItemSubCategoryResource(ItemSubCategory::get()->where('sub',$subcategory_id));
+
+                $sub = new ItemSubCategoryResource(ItemSubCategory::get()->where('parent',$subcategory_id));
+                if($sub->isNotEmpty() || $item->isNotEmpty()){
+                    $itemSubCategories[$i]['is_something'] = true;
+                }else{
+                    $itemSubCategories[$i]['is_something'] = false;
+                }  
+            }
+        }
+     
+            
+        return $itemCategories;
+      
+    }
 }
