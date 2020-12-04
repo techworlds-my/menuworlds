@@ -11,6 +11,8 @@ use App\Models\ItemSubCategory;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Admin\ItemManagementResource;
+use App\Models\ItemManagement;
 
 class ItemSubCategoryApiController extends Controller
 {
@@ -80,32 +82,51 @@ class ItemSubCategoryApiController extends Controller
 
     public function filter_by_category_or_sub(int $id)
     {   
-        abort_if(Gate::denies('item_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        abort_if(Gate::denies('item_sub_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $itemSubCategories = new ItemSubCategoryResource(ItemSubCategory::with(['category', 'merchant'])->get()->where('parent',$id));
 
+        $itemSubCategories = new ItemSubCategoryResource(ItemSubCategory::with(['category', 'merchant'])->where('parent',$id)->get());
+        //detect if it is link to sub or category
+        //yes
         if($itemSubCategories->isNotEmpty()){
+            
+            for($i=0;$i<$itemSubCategories->count();$i++){
+                $subcategory_id = $itemSubCategories[$i]['id'];
+           
+                $item = new ItemManagementResource(ItemManagement::where('sub_category_id',$subcategory_id)->get());
 
+                $sub = new ItemSubCategoryResource(ItemSubCategory::where('parent',$subcategory_id)->get());
+                if($sub->isNotEmpty() || $item->isNotEmpty()){
+                    $itemSubCategories[$i]['is_something'] = true;
+                }
+                
+                else{
+                    $itemSubCategories[$i]['is_something'] = false;
+                }  
+            }
+            $itemSubCategories['linkSub'] = true;
         }
+        //no
         else{
             $itemSubCategories = new ItemSubCategoryResource(ItemSubCategory::with(['category', 'merchant'])->get()->where('category_id',$id));
-
             for($i=0;$i<$itemSubCategories->count();$i++){
                 $subcategory_id = $itemSubCategories[$i]['id'];
 
-                $item = new ItemSubCategoryResource(ItemSubCategory::get()->where('sub',$subcategory_id));
+                $item = new ItemManagementResource(ItemManagement::where('sub_category_id',$subcategory_id)->get());
 
-                $sub = new ItemSubCategoryResource(ItemSubCategory::get()->where('parent',$subcategory_id));
+                $sub = new ItemSubCategoryResource(ItemSubCategory::where('parent',$subcategory_id)->get());
+
                 if($sub->isNotEmpty() || $item->isNotEmpty()){
                     $itemSubCategories[$i]['is_something'] = true;
                 }else{
                     $itemSubCategories[$i]['is_something'] = false;
                 }  
             }
+            $itemSubCategories['linkSub'] = false;
         }
      
             
-        return $itemCategories;
+        return $itemSubCategories;
       
     }
 }

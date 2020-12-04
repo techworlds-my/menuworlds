@@ -36,6 +36,9 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
      //item-category
       Route::get('item-categories/filter/merchant/{id}','ItemCategoryApiController@filter_by_merchant_id');
 
+      //item-sub-category
+      Route::get('item-sub-categories/filter/category_or_sub/{id}','ItemSubCategoryApiController@filter_by_category_or_sub');
+
       
     // Permissions
     Route::apiResource('permissions', 'PermissionsApiController');

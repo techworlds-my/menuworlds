@@ -85,14 +85,14 @@ class ItemCategoryApiController extends Controller
     {   
         abort_if(Gate::denies('item_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-         $itemCategories = new ItemCategoryResource(ItemCategory::with(['merchant'])->get()->where('merchant_id',$id));
-         
+         $itemCategories = new ItemCategoryResource(ItemCategory::with(['merchant'])->where('merchant_id',$id)->get());
+        
             for($i=0;$i<$itemCategories->count();$i++){
                 $category_id = $itemCategories[$i]['id'];
 
-                $item = new ItemManagementResource(ItemManagement::get()->where('category_id',$category_id));
+                $item = new ItemManagementResource(ItemManagement::where('category_id',$category_id)->get());
 
-                $sub = new ItemSubCategoryResource(ItemSubCategory::get()->where('category_id',$category_id));
+                $sub = new ItemSubCategoryResource(ItemSubCategory::where('category_id',$category_id)->get());
                 if($sub->isNotEmpty() || $item->isNotEmpty()){
                     $itemCategories[$i]['is_something'] = true;
                 }else{
