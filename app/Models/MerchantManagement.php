@@ -18,6 +18,7 @@ class MerchantManagement extends Model implements HasMedia
 
     protected $appends = [
         'profile_photo',
+        'banner',
     ];
 
     protected $dates = [
@@ -112,5 +113,18 @@ class MerchantManagement extends Model implements HasMedia
     public function area()
     {
         return $this->belongsTo(Area::class, 'area_id');
+    }
+
+    public function getBannerAttribute()
+    {
+        $file = $this->getMedia('banner')->last();
+
+        if ($file) {
+            $file->url       = $file->getUrl();
+            $file->thumbnail = $file->getUrl('thumb');
+            $file->preview   = $file->getUrl('preview');
+        }
+
+        return $file;
     }
 }

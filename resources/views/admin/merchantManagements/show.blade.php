@@ -179,6 +179,18 @@
                             {{ $merchantManagement->area->area ?? '' }}
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.merchantManagement.fields.banner') }}
+                        </th>
+                        <td>
+                            @if($merchantManagement->banner)
+                                <a href="{{ $merchantManagement->banner->getUrl() }}" target="_blank" style="display: inline-block">
+                                    <img src="{{ $merchantManagement->banner->getUrl('thumb') }}">
+                                </a>
+                            @endif
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">

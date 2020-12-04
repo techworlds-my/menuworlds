@@ -56,6 +56,10 @@ class MerchantManagementController extends Controller
             $merchantManagement->addMedia(storage_path('tmp/uploads/' . $request->input('profile_photo')))->toMediaCollection('profile_photo');
         }
 
+        if ($request->input('banner', false)) {
+            $merchantManagement->addMedia(storage_path('tmp/uploads/' . $request->input('banner')))->toMediaCollection('banner');
+        }
+
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $merchantManagement->id]);
         }
@@ -92,6 +96,18 @@ class MerchantManagementController extends Controller
             }
         } elseif ($merchantManagement->profile_photo) {
             $merchantManagement->profile_photo->delete();
+        }
+
+        if ($request->input('banner', false)) {
+            if (!$merchantManagement->banner || $request->input('banner') !== $merchantManagement->banner->file_name) {
+                if ($merchantManagement->banner) {
+                    $merchantManagement->banner->delete();
+                }
+
+                $merchantManagement->addMedia(storage_path('tmp/uploads/' . $request->input('banner')))->toMediaCollection('banner');
+            }
+        } elseif ($merchantManagement->banner) {
+            $merchantManagement->banner->delete();
         }
 
         return redirect()->route('frontend.merchant-managements.index');

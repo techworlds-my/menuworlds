@@ -50,6 +50,26 @@
                                         {{ $merchantSubCategory->category->name ?? '' }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.merchantSubCategory.fields.image') }}
+                                    </th>
+                                    <td>
+                                        @if($merchantSubCategory->image)
+                                            <a href="{{ $merchantSubCategory->image->getUrl() }}" target="_blank" style="display: inline-block">
+                                                <img src="{{ $merchantSubCategory->image->getUrl('thumb') }}">
+                                            </a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.merchantSubCategory.fields.parent') }}
+                                    </th>
+                                    <td>
+                                        {{ $merchantSubCategory->parent->sub_category ?? '' }}
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

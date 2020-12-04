@@ -50,6 +50,18 @@
                                         {{ $itemCategory->merchant->company_name ?? '' }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.itemCategory.fields.image') }}
+                                    </th>
+                                    <td>
+                                        @if($itemCategory->image)
+                                            <a href="{{ $itemCategory->image->getUrl() }}" target="_blank" style="display: inline-block">
+                                                <img src="{{ $itemCategory->image->getUrl('thumb') }}">
+                                            </a>
+                                        @endif
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="form-group">

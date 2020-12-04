@@ -86,6 +86,9 @@
                                         {{ trans('cruds.area.fields.postcode') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.merchantManagement.fields.banner') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -175,6 +178,8 @@
                                     </td>
                                     <td>
                                     </td>
+                                    <td>
+                                    </td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -246,6 +251,13 @@
                                         </td>
                                         <td>
                                             {{ $merchantManagement->area->postcode ?? '' }}
+                                        </td>
+                                        <td>
+                                            @if($merchantManagement->banner)
+                                                <a href="{{ $merchantManagement->banner->getUrl() }}" target="_blank" style="display: inline-block">
+                                                    <img src="{{ $merchantManagement->banner->getUrl('thumb') }}">
+                                                </a>
+                                            @endif
                                         </td>
                                         <td>
                                             @can('merchant_management_show')
@@ -327,14 +339,28 @@
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();
   });
-  $('.datatable thead').on('input', '.search', function () {
+  
+let visibleColumnsIndexes = null;
+$('.datatable thead').on('input', '.search', function () {
       let strict = $(this).attr('strict') || false
       let value = strict && this.value ? "^" + this.value + "$" : this.value
+
+      let index = $(this).parent().index()
+      if (visibleColumnsIndexes !== null) {
+        index = visibleColumnsIndexes[index]
+      }
+
       table
-        .column($(this).parent().index())
+        .column(index)
         .search(value, strict)
         .draw()
   });
+table.on('column-visibility.dt', function(e, settings, column, state) {
+      visibleColumnsIndexes = []
+      table.columns(":visible").every(function(colIdx) {
+          visibleColumnsIndexes.push(colIdx);
+      });
+  })
 })
 
 </script>

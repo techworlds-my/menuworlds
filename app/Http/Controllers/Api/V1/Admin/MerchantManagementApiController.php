@@ -31,6 +31,10 @@ class MerchantManagementApiController extends Controller
             $merchantManagement->addMedia(storage_path('tmp/uploads/' . $request->input('profile_photo')))->toMediaCollection('profile_photo');
         }
 
+        if ($request->input('banner', false)) {
+            $merchantManagement->addMedia(storage_path('tmp/uploads/' . $request->input('banner')))->toMediaCollection('banner');
+        }
+
         return (new MerchantManagementResource($merchantManagement))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
@@ -57,6 +61,18 @@ class MerchantManagementApiController extends Controller
             }
         } elseif ($merchantManagement->profile_photo) {
             $merchantManagement->profile_photo->delete();
+        }
+
+        if ($request->input('banner', false)) {
+            if (!$merchantManagement->banner || $request->input('banner') !== $merchantManagement->banner->file_name) {
+                if ($merchantManagement->banner) {
+                    $merchantManagement->banner->delete();
+                }
+
+                $merchantManagement->addMedia(storage_path('tmp/uploads/' . $request->input('banner')))->toMediaCollection('banner');
+            }
+        } elseif ($merchantManagement->banner) {
+            $merchantManagement->banner->delete();
         }
 
         return (new MerchantManagementResource($merchantManagement))

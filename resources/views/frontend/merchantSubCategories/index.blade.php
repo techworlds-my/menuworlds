@@ -38,6 +38,12 @@
                                         {{ trans('cruds.merchantCategory.fields.is_enable') }}
                                     </th>
                                     <th>
+                                        {{ trans('cruds.merchantSubCategory.fields.image') }}
+                                    </th>
+                                    <th>
+                                        {{ trans('cruds.merchantSubCategory.fields.parent') }}
+                                    </th>
+                                    <th>
                                         &nbsp;
                                     </th>
                                 </tr>
@@ -61,6 +67,16 @@
                                         <td>
                                             <span style="display:none">{{ $merchantSubCategory->category->is_enable ?? '' }}</span>
                                             <input type="checkbox" disabled="disabled" {{ $merchantSubCategory->category->is_enable ? 'checked' : '' }}>
+                                        </td>
+                                        <td>
+                                            @if($merchantSubCategory->image)
+                                                <a href="{{ $merchantSubCategory->image->getUrl() }}" target="_blank" style="display: inline-block">
+                                                    <img src="{{ $merchantSubCategory->image->getUrl('thumb') }}">
+                                                </a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{ $merchantSubCategory->parent->sub_category ?? '' }}
                                         </td>
                                         <td>
                                             @can('merchant_sub_category_show')

@@ -19,10 +19,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Merchant Categories
     Route::delete('merchant-categories/destroy', 'MerchantCategoryController@massDestroy')->name('merchant-categories.massDestroy');
+    Route::post('merchant-categories/media', 'MerchantCategoryController@storeMedia')->name('merchant-categories.storeMedia');
+    Route::post('merchant-categories/ckmedia', 'MerchantCategoryController@storeCKEditorImages')->name('merchant-categories.storeCKEditorImages');
     Route::resource('merchant-categories', 'MerchantCategoryController');
 
     // Merchant Sub Categories
     Route::delete('merchant-sub-categories/destroy', 'MerchantSubCategoryController@massDestroy')->name('merchant-sub-categories.massDestroy');
+    Route::post('merchant-sub-categories/media', 'MerchantSubCategoryController@storeMedia')->name('merchant-sub-categories.storeMedia');
+    Route::post('merchant-sub-categories/ckmedia', 'MerchantSubCategoryController@storeCKEditorImages')->name('merchant-sub-categories.storeCKEditorImages');
     Route::resource('merchant-sub-categories', 'MerchantSubCategoryController');
 
     // Audit Logs
@@ -116,10 +120,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Item Sub Categories
     Route::delete('item-sub-categories/destroy', 'ItemSubCategoryController@massDestroy')->name('item-sub-categories.massDestroy');
+    Route::post('item-sub-categories/media', 'ItemSubCategoryController@storeMedia')->name('item-sub-categories.storeMedia');
+    Route::post('item-sub-categories/ckmedia', 'ItemSubCategoryController@storeCKEditorImages')->name('item-sub-categories.storeCKEditorImages');
     Route::resource('item-sub-categories', 'ItemSubCategoryController');
 
     // Item Categories
     Route::delete('item-categories/destroy', 'ItemCategoryController@massDestroy')->name('item-categories.massDestroy');
+    Route::post('item-categories/media', 'ItemCategoryController@storeMedia')->name('item-categories.storeMedia');
+    Route::post('item-categories/ckmedia', 'ItemCategoryController@storeCKEditorImages')->name('item-categories.storeCKEditorImages');
     Route::resource('item-categories', 'ItemCategoryController');
 
     Route::get('messenger', 'MessengerController@index')->name('messenger.index');

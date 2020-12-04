@@ -35,6 +35,9 @@
                             {{ trans('cruds.itemCategory.fields.merchant') }}
                         </th>
                         <th>
+                            {{ trans('cruds.itemCategory.fields.image') }}
+                        </th>
+                        <th>
                             &nbsp;
                         </th>
                     </tr>
@@ -57,6 +60,13 @@
                             </td>
                             <td>
                                 {{ $itemCategory->merchant->company_name ?? '' }}
+                            </td>
+                            <td>
+                                @if($itemCategory->image)
+                                    <a href="{{ $itemCategory->image->getUrl() }}" target="_blank" style="display: inline-block">
+                                        <img src="{{ $itemCategory->image->getUrl('thumb') }}">
+                                    </a>
+                                @endif
                             </td>
                             <td>
                                 @can('item_category_show')

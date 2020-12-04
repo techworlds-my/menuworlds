@@ -37,6 +37,12 @@
                         {{ trans('cruds.merchantCategory.fields.is_enable') }}
                     </th>
                     <th>
+                        {{ trans('cruds.merchantSubCategory.fields.image') }}
+                    </th>
+                    <th>
+                        {{ trans('cruds.merchantSubCategory.fields.parent') }}
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -97,6 +103,8 @@
 { data: 'in_enable', name: 'in_enable' },
 { data: 'category_name', name: 'category.name' },
 { data: 'category.is_enable', name: 'category.is_enable' },
+{ data: 'image', name: 'image', sortable: false, searchable: false },
+{ data: 'parent_sub_category', name: 'parent.sub_category' },
 { data: 'actions', name: '{{ trans('global.actions') }}' }
     ],
     orderCellsTop: true,

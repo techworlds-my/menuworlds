@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\MediaUploadingTrait;
 use App\Http\Requests\StoreMerchantCategoryRequest;
 use App\Http\Requests\UpdateMerchantCategoryRequest;
 use App\Http\Resources\Admin\MerchantCategoryResource;
@@ -13,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class MerchantCategoryApiController extends Controller
 {
+    use MediaUploadingTrait;
+
     public function index()
     {
         abort_if(Gate::denies('merchant_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
@@ -23,6 +26,10 @@ class MerchantCategoryApiController extends Controller
     public function store(StoreMerchantCategoryRequest $request)
     {
         $merchantCategory = MerchantCategory::create($request->all());
+
+        if ($request->input('image', false)) {
+            $merchantCategory->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
+        }
 
         return (new MerchantCategoryResource($merchantCategory))
             ->response()
@@ -39,6 +46,18 @@ class MerchantCategoryApiController extends Controller
     public function update(UpdateMerchantCategoryRequest $request, MerchantCategory $merchantCategory)
     {
         $merchantCategory->update($request->all());
+
+        if ($request->input('image', false)) {
+            if (!$merchantCategory->image || $request->input('image') !== $merchantCategory->image->file_name) {
+                if ($merchantCategory->image) {
+                    $merchantCategory->image->delete();
+                }
+
+                $merchantCategory->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
+            }
+        } elseif ($merchantCategory->image) {
+            $merchantCategory->image->delete();
+        }
 
         return (new MerchantCategoryResource($merchantCategory))
             ->response()

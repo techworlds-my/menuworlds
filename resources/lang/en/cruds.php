@@ -101,6 +101,8 @@ return [
             'updated_at_helper' => ' ',
             'deleted_at'        => 'Deleted at',
             'deleted_at_helper' => ' ',
+            'image'             => 'Image',
+            'image_helper'      => ' ',
         ],
     ],
     'merchantSubCategory' => [
@@ -121,6 +123,10 @@ return [
             'updated_at_helper'   => ' ',
             'deleted_at'          => 'Deleted at',
             'deleted_at_helper'   => ' ',
+            'image'               => 'Image',
+            'image_helper'        => ' ',
+            'parent'              => 'Parent',
+            'parent_helper'       => ' ',
         ],
     ],
     'auditLog'            => [
@@ -215,6 +221,8 @@ return [
             'merchane_level_helper'   => ' ',
             'area'                    => 'Area',
             'area_helper'             => ' ',
+            'banner'                  => 'Banner',
+            'banner_helper'           => ' ',
         ],
     ],
     'item'                => [
@@ -711,6 +719,10 @@ return [
             'category_helper'   => ' ',
             'merchant'          => 'Merchant',
             'merchant_helper'   => ' ',
+            'image'             => 'Image',
+            'image_helper'      => ' ',
+            'parent'            => 'Parent',
+            'parent_helper'     => ' ',
         ],
     ],
     'itemCategory'        => [
@@ -731,6 +743,8 @@ return [
             'deleted_at_helper' => ' ',
             'merchant'          => 'Merchant',
             'merchant_helper'   => ' ',
+            'image'             => 'Image',
+            'image_helper'      => ' ',
         ],
     ],
 ];
