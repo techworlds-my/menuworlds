@@ -24,7 +24,7 @@ class MerchantSubCategoryController extends Controller
         abort_if(Gate::denies('merchant_sub_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         if ($request->ajax()) {
-            $query = MerchantSubCategory::with(['category', 'parent'])->select(sprintf('%s.*', (new MerchantSubCategory)->table));
+            $query = MerchantSubCategory::with(['category'])->select(sprintf('%s.*', (new MerchantSubCategory)->table));
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
@@ -72,9 +72,13 @@ class MerchantSubCategoryController extends Controller
 
                 return '';
             });
-            $table->addColumn('parent_sub_category', function ($row) {
-                return $row->parent ? $row->parent->sub_category : '';
+
+            $table->editColumn('parent', function ($row) {
+                return $row->parent ? $row->parent : "";
             });
+            // $table->addColumn('parent_sub_category', function ($row) {
+            //     return $row->parent ? $row->parent->sub_category : '';
+            // });
 
             $table->rawColumns(['actions', 'placeholder', 'in_enable', 'category', 'image', 'parent']);
 
@@ -90,9 +94,8 @@ class MerchantSubCategoryController extends Controller
 
         $categories = MerchantCategory::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $parents = MerchantSubCategory::all()->pluck('sub_category', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        return view('admin.merchantSubCategories.create', compact('categories', 'parents'));
+        return view('admin.merchantSubCategories.create', compact('categories'));
     }
 
     public function store(StoreMerchantSubCategoryRequest $request)
@@ -116,11 +119,11 @@ class MerchantSubCategoryController extends Controller
 
         $categories = MerchantCategory::all()->pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $parents = MerchantSubCategory::all()->pluck('sub_category', 'id')->prepend(trans('global.pleaseSelect'), '');
+      
 
-        $merchantSubCategory->load('category', 'parent');
+        $merchantSubCategory->load('category');
 
-        return view('admin.merchantSubCategories.edit', compact('categories', 'parents', 'merchantSubCategory'));
+        return view('admin.merchantSubCategories.edit', compact('categories','merchantSubCategory'));
     }
 
     public function update(UpdateMerchantSubCategoryRequest $request, MerchantSubCategory $merchantSubCategory)
@@ -146,7 +149,7 @@ class MerchantSubCategoryController extends Controller
     {
         abort_if(Gate::denies('merchant_sub_category_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $merchantSubCategory->load('category', 'parent');
+        $merchantSubCategory->load('category');
 
         return view('admin.merchantSubCategories.show', compact('merchantSubCategory'));
     }

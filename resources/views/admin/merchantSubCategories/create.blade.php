@@ -58,18 +58,14 @@
                 <span class="help-block">{{ trans('cruds.merchantSubCategory.fields.image_helper') }}</span>
             </div>
             <div class="form-group">
-                <label for="parent_id">{{ trans('cruds.merchantSubCategory.fields.parent') }}</label>
-                <select class="form-control select2 {{ $errors->has('parent') ? 'is-invalid' : '' }}" name="parent_id" id="parent_id">
-                    @foreach($parents as $id => $parent)
-                        <option value="{{ $id }}" {{ old('parent_id') == $id ? 'selected' : '' }}>{{ $parent }}</option>
-                    @endforeach
-                </select>
+                <label class="required" for="parent">{{ trans('cruds.merchantSubCategory.fields.parent') }}</label>
+                <input class="form-control {{ $errors->has('parent') ? 'is-invalid' : '' }}" type="text" name="parent" id="parent" value="{{ old('parent', '') }}" required>
                 @if($errors->has('parent'))
                     <div class="invalid-feedback">
                         {{ $errors->first('parent') }}
                     </div>
                 @endif
-                <span class="help-block">{{ trans('cruds.merchantSubCategory.fields.parent_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.merchantSubCategory.fields.sub_category_helper') }}</span>
             </div>
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">

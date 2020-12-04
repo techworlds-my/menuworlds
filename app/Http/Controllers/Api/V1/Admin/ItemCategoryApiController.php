@@ -81,7 +81,12 @@ class ItemCategoryApiController extends Controller
     {   
         abort_if(Gate::denies('item_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        return new ItemCategoryResource(ItemCategory::with(['merchant'])->get()->where('merchant_id',$id));
+         $items = new ItemCategoryResource(ItemCategory::with(['merchant'])->get()->where('merchant_id',$id));
+        // $myArr = [1, 2, 3, 4];
+        // array_push($myArr, 5, 8);
+        $items->is_someting = 'gg';
+        return $items;
+      // return json_encode($myArr);
     }
 
 }

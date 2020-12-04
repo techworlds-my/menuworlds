@@ -24,11 +24,7 @@ class ItemManagementSeeder extends Seeder
             ]
         ];
 
-
-        $file = file('https://source.unsplash.com/random');
-        return $file;
         $itemManagement = ItemManagement::insert($item);
        
-        $itemManagement->addMedia($file)->toMediaCollection('image');
     }
 }
