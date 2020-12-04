@@ -27,9 +27,14 @@ class ItemSubCategoryApiController extends Controller
     {
         $itemSubCategory = ItemSubCategory::create($request->all());
 
-        if ($request->input('image', false)) {
-            $itemSubCategory->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
-        }
+        $file = $request->file('image');
+        $imageCount = count($request->file('image'));
+        
+
+         for($i = 0;$i<$imageCount;$i++){
+              $itemSubCategory->addMedia($file[$i])->toMediaCollection('image');
+              
+         }
 
         return (new ItemSubCategoryResource($itemSubCategory))
             ->response()

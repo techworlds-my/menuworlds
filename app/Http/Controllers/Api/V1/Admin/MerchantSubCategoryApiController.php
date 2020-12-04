@@ -27,9 +27,14 @@ class MerchantSubCategoryApiController extends Controller
     {
         $merchantSubCategory = MerchantSubCategory::create($request->all());
 
-        if ($request->input('image', false)) {
-            $merchantSubCategory->addMedia(storage_path('tmp/uploads/' . $request->input('image')))->toMediaCollection('image');
-        }
+    
+        $file = $request->file('image');
+        $imageCount = count($request->file('image'));
+        
+
+         for($i = 0;$i<$imageCount;$i++){
+              $merchantSubCategory->addMedia($file[$i])->toMediaCollection('image');
+         }
 
         return (new MerchantSubCategoryResource($merchantSubCategory))
             ->response()
@@ -72,4 +77,12 @@ class MerchantSubCategoryApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    public function filter_by_category($id)
+    {
+        abort_if(Gate::denies('merchant_sub_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return new MerchantSubCategoryResource(MerchantSubCategory::with(['category'])->get()->where('category_id',$id));
+    }
+    
 }
