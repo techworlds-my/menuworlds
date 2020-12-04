@@ -95,4 +95,19 @@ class MerchantManagementApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    public function filter_by_id(int $id)
+    {
+        abort_if(Gate::denies('merchant_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return new MerchantManagementResource(MerchantManagement::with(['sub_category', 'merchane_level', 'area'])->get()->where('id',$id));
+    }
+    
+    public function filter_by_sub_category(int $subcategory)
+    {
+        abort_if(Gate::denies('merchant_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return new MerchantManagementResource(MerchantManagement::with(['sub_category', 'merchane_level', 'area'])->get()->where('sub_category_id',$subcategory));
+    }
+
 }
