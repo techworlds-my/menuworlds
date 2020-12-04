@@ -26,14 +26,22 @@ class MerchantManagementApiController extends Controller
     public function store(StoreMerchantManagementRequest $request)
     {
         $merchantManagement = MerchantManagement::create($request->all());
+        
+        $file = $request->file('profile_photo');
+        $banner = $request->file('banner');
+        $bannerCount = count($request->file('banner'));
+        $imageCount = count($request->file('profile_photo'));
+        
 
-        if ($request->input('profile_photo', false)) {
-            $merchantManagement->addMedia(storage_path('tmp/uploads/' . $request->input('profile_photo')))->toMediaCollection('profile_photo');
-        }
+         for($i = 0;$i<$imageCount;$i++){
+              $merchantManagement->addMedia($file[$i])->toMediaCollection('profile_photo');
+         }
+ 
+         for($j = 0;$j<$bannerCount;$j++){
+            $merchantManagement->addMedia($banner[$j])->toMediaCollection('banner');
+       }
 
-        if ($request->input('banner', false)) {
-            $merchantManagement->addMedia(storage_path('tmp/uploads/' . $request->input('banner')))->toMediaCollection('banner');
-        }
+
 
         return (new MerchantManagementResource($merchantManagement))
             ->response()
@@ -87,5 +95,19 @@ class MerchantManagementApiController extends Controller
         $merchantManagement->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
+    }
+
+    public function filter_by_id(int $id)
+    {
+        abort_if(Gate::denies('merchant_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return new MerchantManagementResource(MerchantManagement::with(['sub_category', 'merchane_level', 'area'])->get()->where('id',$id));
+    }
+    
+    public function filter_by_sub_category(int $subcategory)
+    {
+        abort_if(Gate::denies('merchant_management_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return new MerchantManagementResource(MerchantManagement::with(['sub_category', 'merchane_level', 'area'])->get()->where('sub_category_id',$subcategory));
     }
 }

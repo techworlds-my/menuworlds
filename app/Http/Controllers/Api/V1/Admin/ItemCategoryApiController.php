@@ -72,4 +72,12 @@ class ItemCategoryApiController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+        
+    public function filter_by_merchant_id(int $id)
+    {
+        abort_if(Gate::denies('item_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return new ItemCategoryResource(ItemCategory::with(['merchant'])->get()>where('merchant_id',$id));
+    }
 }
