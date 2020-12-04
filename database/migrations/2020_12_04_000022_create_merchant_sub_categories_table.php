@@ -12,6 +12,7 @@ class CreateMerchantSubCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('sub_category');
             $table->boolean('in_enable')->default(0)->nullable();
+            $table->string('parent')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

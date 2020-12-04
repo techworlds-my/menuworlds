@@ -31,7 +31,7 @@ class MerchantSubCategory extends Model implements HasMedia
         'sub_category',
         'in_enable',
         'category_id',
-        'parent_id',
+        'parent',
         'created_at',
         'updated_at',
         'deleted_at',
@@ -80,10 +80,5 @@ class MerchantSubCategory extends Model implements HasMedia
         }
 
         return $file;
-    }
-
-    public function parent()
-    {
-        return $this->belongsTo(MerchantSubCategory::class, 'parent_id');
     }
 }

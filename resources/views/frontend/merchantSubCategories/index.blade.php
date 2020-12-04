@@ -76,7 +76,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            {{ $merchantSubCategory->parent->sub_category ?? '' }}
+                                            {{ $merchantSubCategory->parent ?? '' }}
                                         </td>
                                         <td>
                                             @can('merchant_sub_category_show')
