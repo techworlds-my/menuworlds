@@ -35,6 +35,7 @@ class ItemSubCategoryApiController extends Controller
 
          for($i = 0;$i<$imageCount;$i++){
               $itemSubCategory->addMedia($file[$i])->toMediaCollection('image');
+              
          }
        
 
