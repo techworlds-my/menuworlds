@@ -104,7 +104,7 @@ class ItemSubCategoryApiController extends Controller
                     $itemSubCategories[$i]['is_something'] = false;
                 }  
             }
-            $itemSubCategories['linkSub'] = true;
+            $itemSubCategories['linkSub'] = json_encode(true);
         }
         //no
         else{
@@ -122,7 +122,7 @@ class ItemSubCategoryApiController extends Controller
                     $itemSubCategories[$i]['is_something'] = false;
                 }  
             }
-            $itemSubCategories['linkSub'] = false;
+            $itemSubCategories['linkSub'] = json_encode(false);
         }
      
             
