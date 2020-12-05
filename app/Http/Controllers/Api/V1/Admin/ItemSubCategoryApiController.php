@@ -105,7 +105,7 @@ class ItemSubCategoryApiController extends Controller
                 }  
             }
   
-            $itemSubCategories = $itemSubCategories->push(true);
+            
 
         }
         //no
@@ -124,7 +124,7 @@ class ItemSubCategoryApiController extends Controller
                     $itemSubCategories[$i]['is_something'] = false;
                 }  
             }
-            $itemSubCategories = $itemSubCategories->push(false);
+          
         }
      
             
