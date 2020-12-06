@@ -11,7 +11,7 @@ Route::group(['prefix' => 'v1', 'as' => 'api.', 'namespace' => 'Api\V1\Admin', '
      
       //merchant-sub-categories
       Route::get('merchant-sub-categories/filter/category/{category}',
-     'MerchantManagementApiController@filter_by_category');
+     'MerchantSubCategoryApiController@filter_by_category');
  
      //item-managements
      Route::get('item-managements/filter/merchant/{merchant_id}','ItemManagementApiController@filter_by_merchant_id');

@@ -11,6 +11,8 @@ use App\Models\MerchantSubCategory;
 use Gate;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Http\Resources\Admin\MerchantManagementResource;
+use App\Models\MerchantManagement;
 
 class MerchantSubCategoryApiController extends Controller
 {
@@ -81,8 +83,20 @@ class MerchantSubCategoryApiController extends Controller
     public function filter_by_category($id)
     {
         abort_if(Gate::denies('merchant_sub_category_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $subCategory =  new MerchantSubCategoryResource(MerchantSubCategory::with(['category'])->get()->where('category_id',$id));
+   
+        for($i=0;$i<$subCategory->count();$i++){
+            $sub_category_id = $subCategory[$i]['id'];
+ 
 
-        return new MerchantSubCategoryResource(MerchantSubCategory::with(['category'])->get()->where('category_id',$id));
+            $merchant = new MerchantManagementResource(MerchantManagement::where('sub_category_id',$sub_category_id)->get());
+            if($merchant->isNotEmpty()){
+                $subCategory[$i]['is_something'] = true;
+            }else{
+                $subCategory[$i]['is_something'] = false;
+            }  
+        }
+        return $subCategory;
     }
     
 }
